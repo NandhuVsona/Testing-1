@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+        font-family: "Poppins", "sanserif";
+      }
+      .container {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .profile__ {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+      }
+      img {
+        width: 100%;
+
+        height: 100%;
+      }
+      .dp__ {
+        width: 150px;
+        border-radius: 50%;
+        background: #ffffff;
+        height: 150px;
+        overflow: hidden;
+      }
+      .facultys__data {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        padding-top: 10px;
+      }
+      .faculty__name_,
+      .faculty__details_ {
+        text-align: center;
+      }
+      .faculty__details_ {
+        font-size: 18px;
+      }
+      .btns {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+      }
+      .contact {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        margin: 20px 0px;
+      }
+      button {
+        width: 150px;
+        height: 50px;
+        border: none;
+        font-family: inherit;
+        font-weight: 500;
+        background-color: #a136ff;
+        font-size: 18px;
+        color: white;
+        border-radius: 10px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        height: 100%;
+        overflow-x: scroll;
+      }
+      td,
+      th {
+        padding: 7px 10px;
+      }
+      .day {
+        background-color: rgb(208, 216, 230);
+      }
+      tr > th {
+        background-color: rgb(208, 216, 230);
+      }
+      #out {
+        background-color: transparent;
+      }
+
+      .call {
+        background-color: #ff9a48;
+        color: #fff;
+      }
+      .backward {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+      .backward i {
+        font-size: 30px;
+      }
+      .container {
+        position: relative;
+      }
+      .timetable {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 65em;
+        height: 400px;
+        padding: 10px;
+      }
+      .outer-table {
+        width: 360px;
+        overflow-x: scroll;
+      }
+
+      .today-status {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 15px;
+        height: 50px;
+      }
+
+      .today-status img {
+        width: 30px;
+        height: 30px;
+      }
+      .bold {
+        font-weight: 500;
+        font-size: 18px;
+      }
+      .details__ p {
+        width: 100%;
+        font-size: 15px;
+        text-align: left !important;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .status {
+        border-radius: 50%;
+      }
+
+      @media only screen and (min-width: 576px) {
+        .outer-table {
+          width: 500px;
+        }
+      }
+      @media only screen and (min-width: 755px) {
+        .outer-table {
+          width: 750px;
+        }
+        .details__ p {
+          font-size: 20px;
+        }
+        .profile__ {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          gap: 15px;
+          width: 100%;
+        }
+        img {
+          width: 100%;
+
+          height: 100%;
+        }
+        .dp__ {
+          width: 180px;
+          height: 180px;
+        }
+        .facultys__data {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          justify-content: center;
+          align-items: center;
+          padding-top: 10px;
+        }
+        .faculty__name_,
+        .faculty__details_ {
+          text-align: center;
+          font-size: 20px;
+        }
+        .faculty__details_ {
+          font-size: 18px;
+        }
+        .btns {
+          width: 100%;
+          display: flex;
+
+          flex-direction: column;
+        }
+        .contact {
+          display: flex;
+          justify-content: space-around;
+          width: 60%;
+          margin: 20px 0px;
+        }
+        button {
+          width: 150px;
+          height: 50px;
+
+          font-size: 20px;
+        }
+        .day {
+          background-color: rgb(231, 234, 239);
+        }
+        tr > th {
+          background-color: rgb(224, 226, 228);
+        }
+        tr > td,
+        tr > th {
+          font-size: 20px;
+          padding: 5px 10px;
+        }
+        #out {
+          background-color: transparent;
+        }
+        .today-status {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 60px;
+        }
+        .today-status img {
+          width: 40px;
+          height: 40px;
+        }
+
+        .bold {
+          font-weight: 500;
+          font-size: 20px;
+        }
+        .details__ p {
+          font-size: 20px;
+        }
+        .faculty__name_ {
+          font-size: 30px;
+        }
+        section {
+          display: flex;
+
+          flex-direction: column;
+        }
+      }
+
+      .count-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .count {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 340px;
+        margin-top: 15px;
+        height: 160px;
+        flex-direction: column;
+        padding: 10px;
+      }
+      .pcount,
+      .acount {
+        padding: 5px 15px;
+        font-size: 18px;
+        width: 100%;
+        color: white;
+        border-radius: 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: 18px;
+        gap: 5px;
+        height: 60px;
+        text-align: center;
+      }
+      .pcount p,
+      .acount p {
+        font-weight: bold;
+      }
+      .acount p {
+        padding-left: 10px;
+      }
+      .pcount p {
+        padding-right: 10px;
+      }
+      .pcount {
+        border-radius: 50px;
+        background-color: #00aeff;
+        position: relative;
+      }
+      .coutn p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      .count .pcount p i {
+        font-size: 20px;
+        margin-left: 20px;
+      }
+      .count .acount p i {
+        font-size: 20px;
+        margin-right: 15px;
+      }
+      .acount {
+        border-radius: 50px;
+        background-color: #fb3abe;
+        flex-direction: row-reverse;
+        position: relative;
+      }
+
+      .mark {
+        background-color: #ffffff;
+        color: #000000;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+      }
+      .pmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 2px solid;
+      }
+      .amark {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: 2px solid;
+      }
+      .previous-records {
+        text-align: center;
+        user-select: none;
+
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 10px;
+        margin-bottom: 30px;
+      }
+
+      tr img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+      .tabel-body {
+        width: 350px;
+        height: 320px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        animation: open 0.3s ease-out forwards;
+        transform-origin: top;
+
+        overflow: hidden;
+        overflow-y: scroll;
+      }
+
+      @keyframes open {
+        from {
+          transform: translateY(-10px) scaleY(0); /* Add scaleY(0) to make it appear like it's opening from the top */
+          opacity: 0; /* Add opacity 0 in the 'from' keyframe as well */
+        }
+        to {
+          transform: translateY(0) scaleY(1); /* Change to translateY(0) and scaleY(1) to show the full content */
+          opacity: 1; /* Change opacity to 1 to fully reveal the content */
+        }
+      }
+
+      .tabel-body.close {
+        display: none;
+      }
+      .fa-angle-up {
+        transition: all 0.3s ease;
+      }
+      .fa-angle-up.down {
+        transform: rotate(180deg);
+      }
+      .previous-records table tr:nth-child(even) {
+        background-color: #f1f1f1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile__">
+        <div class="dp__">
+          <img src="<%=staff.image%>" alt="<%=staff.name%>'s image" />
+        </div>
+        <section>
+          <div class="details__">
+            <div class="today-status">
+              <h2 class="faculty__name_"><%=staff.name%></h2>
+
+              <%if(staff.status=='present'){%>
+              <img class="status" src="./present.jpg" alt="" />
+              <%}else{%>
+              <img class="status" src="./absent.jpg" alt="" />
+              <%}%>
+            </div>
+            <!-- <p class="faculty__details_">Department of <%=staff.department%></p> -->
+            <p class="faculty__details_">Location : <%=staff.location%></p>
+            <p class="faculty__details_"><%=staff.email%></p>
+          </div>
+        </section>
+      </div>
+      <div class="contact">
+        <a href=""
+          ><button class="emil">
+            <i class="fa-regular fa-envelope" style="color: #ffffff"></i>
+            Message
+          </button></a
+        >
+        <a href="tel:9361917574"
+          ><button class="call">
+            <i class="fa-solid fa-phone" style="color: #ffffff"></i> Phone
+          </button></a
+        >
+      </div>
+      <div class="outer-table">
+        <div class="timetable">
+          <table border="5">
+            <tr>
+              <th id="out"></th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+              <th>6</th>
+              <th>7</th>
+            </tr>
+            <tr>
+              <td class="day">Mon</td>
+              <td><%=staff.monday.firstPeriod %></td>
+              <td><%=staff.monday.secondPeriod %></td>
+              <td><%=staff.monday.thirdPeriod %></td>
+              <td><%=staff.monday.fourthPeriod %></td>
+              <td><%=staff.monday.fifthPeriod %></td>
+              <td><%=staff.monday.sixthPeriod %></td>
+              <td><%=staff.monday.seventhPeriod %></td>
+            </tr>
+            <tr>
+              <td class="day">Tue</td>
+
+              <td><%=staff.tuesday.firstPeriod %></td>
+              <td><%=staff.tuesday.secondPeriod %></td>
+              <td><%=staff.tuesday.thirdPeriod %></td>
+              <td><%=staff.tuesday.fourthPeriod %></td>
+              <td><%=staff.tuesday.fifthPeriod %></td>
+              <td><%=staff.tuesday.sixthPeriod %></td>
+              <td><%=staff.tuesday.seventhPeriod %></td>
+            </tr>
+            <tr>
+              <td class="day">Wed</td>
+              <td><%=staff.wednesday.firstPeriod %></td>
+              <td><%=staff.wednesday.secondPeriod %></td>
+              <td><%=staff.wednesday.thirdPeriod %></td>
+              <td><%=staff.wednesday.fourthPeriod %></td>
+              <td><%=staff.wednesday.fifthPeriod %></td>
+              <td><%=staff.wednesday.sixthPeriod %></td>
+              <td><%=staff.wednesday.seventhPeriod %></td>
+            </tr>
+            <tr>
+              <td class="day">Thu</td>
+              <td><%=staff.thursday.firstPeriod %></td>
+              <td><%=staff.thursday.secondPeriod %></td>
+              <td><%=staff.thursday.thirdPeriod %></td>
+              <td><%=staff.thursday.fourthPeriod %></td>
+              <td><%=staff.thursday.fifthPeriod %></td>
+              <td><%=staff.thursday.sixthPeriod %></td>
+              <td><%=staff.thursday.seventhPeriod %></td>
+            </tr>
+            <tr>
+              <td class="day">Fri</td>
+              <td><%=staff.friday.firstPeriod %></td>
+              <td><%=staff.friday.secondPeriod %></td>
+              <td><%=staff.friday.thirdPeriod %></td>
+              <td><%=staff.friday.fourthPeriod %></td>
+              <td><%=staff.friday.fifthPeriod %></td>
+              <td><%=staff.friday.sixthPeriod %></td>
+              <td><%=staff.friday.seventhPeriod %></td>
+            </tr>
+            <tr>
+              <td class="day">Sat</td>
+              <td><%=staff.saturday.firstPeriod %></td>
+              <td><%=staff.saturday.secondPeriod %></td>
+              <td><%=staff.saturday.thirdPeriod %></td>
+              <td><%=staff.saturday.fourthPeriod %></td>
+              <td><%=staff.saturday.fifthPeriod %></td>
+              <td><%=staff.saturday.sixthPeriod %></td>
+              <td><%=staff.saturday.seventhPeriod %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="count-body">
+      <div class="count">
+        <div class="pcount">
+          <h3 class="mark pmark"><%=staff.count.totalPresent%></h3>
+          <p>Days Present <i class="fa-solid fa-user"></i></p>
+        </div>
+        <div class="acount">
+          <h3 class="mark amark"><%=staff.count.totalAbsent%></h3>
+          <p><i class="fa-solid fa-user-slash"></i> Days Absent</p>
+        </div>
+      </div>
+    </div>
+    <div class="previous-records">
+      <header>
+        <h3>Show Previous Day Status</h3>
+        <i class="fa-solid fa-angle-up"></i>
+      </header>
+      <div class="tabel-body close">
+        <table border="1">
+          <tr>
+            <th>Day</th>
+            <th>Status</th>
+          </tr>
+
+          <% staff.date.forEach(date => { %>
+          <tr>
+            <td><%= date.split(' ')[0] %> <%= date.split(' ')[1] %></td>
+            <!-- Display only the date portion -->
+            <% if (date.split(' ')[2] == 'present') { %>
+            <!-- Check if the date exists -->
+            <td>
+              <img src="/present.jpg" alt="" />
+            </td>
+            <% } else { %>
+            <td>
+              <!-- Alternative content if date doesn't exist -->
+              <img src="/absent.jpg" alt="" />
+            </td>
+            <% } %>
+          </tr>
+          <% }); %>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      let todayStatus = document.querySelector(".today-status");
+      let todaySwitch = document.querySelector(".today-switch");
+      todayStatus.addEventListener("click", () => {
+        todaySwitch.classList.toggle("absent");
+      });
+
+      let showPreRecord = document.querySelector(".previous-records header");
+      showPreRecord.addEventListener("click", () => {
+        document.querySelector(".tabel-body").classList.toggle("close");
+        document.querySelector(".fa-angle-up").classList.toggle("down");
+      });
+    </script>
+  </body>
+</html>
