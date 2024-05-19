@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const fs = require("fs");
@@ -29,6 +30,7 @@ const storage = multer.diskStorage({
 
 let uploads = multer({ storage: storage }).single("profile");
 
+app.use(cors());
 app.set("view engine", "ejs");
 app.use(cookieParser());
 app.use(express.json());
