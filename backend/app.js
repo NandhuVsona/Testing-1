@@ -50,6 +50,10 @@ app.use(
 );
 app.use("/optimize", express.static(path.join(__dirname, "..", "public")));
 app.use("/myaccount", express.static(path.join(__dirname, "..", "public")));
+app.use(
+  "/api/v1/staffs",
+  express.static(path.join(__dirname, "..", "public", "uploads"))
+);
 
 // app.use('/',staffRoutes) //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
