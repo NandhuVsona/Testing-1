@@ -81,17 +81,6 @@
         width: 100%;
         margin: 20px 0px;
       }
-      button {
-        width: 150px;
-        height: 50px;
-        border: none;
-        font-family: inherit;
-        font-weight: 500;
-        background-color: #a136ff;
-        font-size: 18px;
-        color: white;
-        border-radius: 10px;
-      }
 
       table {
         border-collapse: collapse;
@@ -113,18 +102,6 @@
         background-color: transparent;
       }
 
-      .call {
-        background-color: #ff9a48;
-        color: #fff;
-      }
-      .backward {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-      }
-      .backward i {
-        font-size: 30px;
-      }
       .container {
         position: relative;
       }
@@ -147,7 +124,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        gap: 15px;
+
         height: 50px;
       }
 
@@ -172,6 +149,74 @@
       .status {
         border-radius: 50%;
       }
+      .count-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .count {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 350px;
+        margin-top: 15px;
+        height: 160px;
+        padding: 10px;
+        gap: 15px;
+      }
+      .pcount,
+      .acount {
+        padding: 5px 15px;
+        font-size: 18px;
+        width: 100%;
+        color: white;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        gap: 5px;
+        height: 120px;
+        text-align: center;
+        flex-direction: column;
+      }
+      .pcount p,
+      .acount p {
+        font-weight: bold;
+      }
+
+      .pcount {
+        background-color: #00aeff;
+      }
+      .coutn p {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+
+      .acount {
+        background-color: #fb3abe;
+      }
+      .mark {
+        background-color: #ffffff;
+        color: #000000;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+      }
+      .tabel-body {
+        position: relative;
+      }
+      .tabel-body table th {
+        position: sticky;
+        top: 0;
+        height: 40px;
+        background:linear-gradient(to left, #ff81d7,#6dcffc);
+      }
 
       @media only screen and (min-width: 576px) {
         .outer-table {
@@ -195,7 +240,6 @@
         }
         img {
           width: 100%;
-
           height: 100%;
         }
         .dp__ {
@@ -255,7 +299,7 @@
           justify-content: center;
           align-items: center;
           width: 100%;
-          height: 60px;
+          height: 50px;
         }
         .today-status img {
           width: 40px;
@@ -279,94 +323,6 @@
         }
       }
 
-      .count-body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .count {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 340px;
-        margin-top: 15px;
-        height: 160px;
-        flex-direction: column;
-        padding: 10px;
-      }
-      .pcount,
-      .acount {
-        padding: 5px 15px;
-        font-size: 18px;
-        width: 100%;
-        color: white;
-        border-radius: 10px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        font-size: 18px;
-        gap: 5px;
-        height: 60px;
-        text-align: center;
-      }
-      .pcount p,
-      .acount p {
-        font-weight: bold;
-      }
-      .acount p {
-        padding-left: 10px;
-      }
-      .pcount p {
-        padding-right: 10px;
-      }
-      .pcount {
-        border-radius: 50px;
-        background-color: #00aeff;
-        position: relative;
-      }
-      .coutn p {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-      }
-      .count .pcount p i {
-        font-size: 20px;
-        margin-left: 20px;
-      }
-      .count .acount p i {
-        font-size: 20px;
-        margin-right: 15px;
-      }
-      .acount {
-        border-radius: 50px;
-        background-color: #fb3abe;
-        flex-direction: row-reverse;
-        position: relative;
-      }
-
-      .mark {
-        background-color: #ffffff;
-        color: #000000;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-      }
-      .pmark {
-        position: absolute;
-        top: 0;
-        left: 0;
-        border: 2px solid;
-      }
-      .amark {
-        position: absolute;
-        top: 0;
-        right: 0;
-        border: 2px solid;
-      }
       .previous-records {
         text-align: center;
         user-select: none;
@@ -387,16 +343,12 @@
       }
       .tabel-body {
         width: 350px;
-        height: 320px;
         display: flex;
         justify-content: center;
         align-items: center;
         transition: all 0.3s ease;
         animation: open 0.3s ease-out forwards;
         transform-origin: top;
-
-        overflow: hidden;
-        overflow-y: scroll;
       }
 
       @keyframes open {
@@ -422,6 +374,105 @@
       .previous-records table tr:nth-child(even) {
         background-color: #f1f1f1;
       }
+
+      .fields {
+        margin: 15px 0px 5px 0px;
+        width: 100%;
+
+        height: 50px;
+      }
+      .fields ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 100%;
+      }
+      .fields ul li i {
+        font-size: 25px;
+      }
+      .fields ul li {
+        flex-grow: 1;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        transition: all 0.15s ease;
+        overflow: hidden;
+      }
+      .fields ul li i {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.8;
+        color: #242424;
+      }
+      .faculty__details_1 {
+        text-align: center;
+      }
+      .fields ul li.active i {
+        background-color: #dadbdb;
+        background-color: rgb(165, 165, 165);
+        border-bottom: 3px solid;
+        color: #ffffff;
+        animation: rotate 0.3s ease;
+        opacity: 1;
+      }
+      @keyframes rotate {
+        0% {
+          transform: translateY(50px);
+        }
+      }
+
+      .icons-content.hide {
+        display: none;
+      }
+      section {
+        width: 100%;
+        height: 50px;
+      }
+      .icons-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .nested {
+        display: flex;
+        height: 50px;
+      }
+      button {
+        width: 150px;
+        height: 50px;
+        border: none;
+        font-family: inherit;
+        font-weight: 500;
+
+        background-color: rgb(146, 35, 250);
+        font-size: 18px;
+        color: white;
+        border-radius: 10px;
+      }
+
+      .call {
+        background-color: #f07c23;
+        color: #fff;
+      }
+      .call,
+      .email {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      a {
+        text-decoration: none;
+      }
+      .mailid h2 {
+        font-size: 21px;
+      }
     </style>
   </head>
   <body>
@@ -431,32 +482,58 @@
           <img src="<%=staff.image%>" alt="<%=staff.name%>'s image" />
         </div>
         <section>
-          <div class="details__">
-            <div class="today-status">
-              <h2 class="faculty__name_"><%=staff.name%></h2>
-
-              <%if(staff.status=='present'){%>
-              <img class="status" src="./present.jpg" alt="" />
-              <%}else{%>
-              <img class="status" src="./absent.jpg" alt="" />
-              <%}%>
+          <div class="details">
+            <div class="loaction icons-content hide">
+              <p>Location</p>
+              <h2 class="faculty__details"><%=staff.location%></h2>
             </div>
-            <!-- <p class="faculty__details_">Department of <%=staff.department%></p> -->
-            <p class="faculty__details_">Location : <%=staff.location%></p>
-            <p class="faculty__details_"><%=staff.email%></p>
+
+            <div class="mailid icons-content hide">
+              <p>Email</p>
+              <h2 class="faculty__details"><%=staff.email%></h2>
+            </div>
+            <div class="today-status icons-content">
+              <p>Name</p>
+              <div class="nested">
+                <h2 class="faculty__details"><%=staff.name%></h2>
+                <%if(staff.status=='present'){%>
+                  <img class="status" src="./present.jpg" alt="" />
+                  <%}else{%>
+                  <img class="status" src="./absent.jpg" alt="" />
+                  <%}%>
+              </div>
+            </div>
+            <div class="department icons-content hide">
+              <p>Department</p>
+              <h2 class="faculty__details"><%=staff.department%></h2>
+            </div>
+            <div class="icons-content hide">
+              <p>Experience</p>
+              <h2 class="faculty__details">7+ Years</h2>
+            </div>
           </div>
         </section>
+        <div class="fields">
+          <ul>
+            <li class="icons"><i class="fa-solid fa-location-dot"></i></li>
+            <li class="icons"><i class="fa-solid fa-envelope"></i></li>
+            <li class="active icons"><i class="fa-solid fa-user"></i></li>
+            <li><i class="fa-solid fa-layer-group"></i></li>
+            <li class="icons"><i class="fa-solid fa-book"></i></li>
+          </ul>
+        </div>
       </div>
       <div class="contact">
         <a href=""
-          ><button class="emil"> 
-            <i class="fa-regular fa-envelope" style="color: #ffffff"></i>
-            Message
+          ><button class="email">
+            <i style="font-size: 24px" class="fa-brands fa-whatsapp"></i>
+            <p>Message</p>
           </button></a
         >
         <a href=""
           ><button class="call">
-            <i class="fa-solid fa-phone" style="color: #ffffff"></i> Phone
+            <i class="fa-solid fa-phone" style="color: #ffffff"></i>
+            <p>Phone</p>
           </button></a
         >
       </div>
@@ -542,11 +619,11 @@
       <div class="count">
         <div class="pcount">
           <h3 class="mark pmark"><%=staff.count.totalPresent%></h3>
-          <p>Days Present <i class="fa-solid fa-user"></i></p>
+          <p>Days Present</p>
         </div>
         <div class="acount">
           <h3 class="mark amark"><%=staff.count.totalAbsent%></h3>
-          <p><i class="fa-solid fa-user-slash"></i> Days Absent</p>
+          <p>Days Absent</p>
         </div>
       </div>
     </div>
@@ -558,7 +635,7 @@
       <div class="tabel-body close">
         <table border="1">
           <tr>
-            <th>Day</th>
+            <th>Date</th>
             <th>Status</th>
           </tr>
 
@@ -595,6 +672,27 @@
         document.querySelector(".tabel-body").classList.toggle("close");
         document.querySelector(".fa-angle-up").classList.toggle("down");
       });
+
+      let fields = document.querySelectorAll(".fields ul li");
+
+      let iconContents = document.querySelectorAll(".icons-content");
+      fields.forEach((field, index) => {
+        field.addEventListener("mouseover", () => {
+          addActive(field, index);
+        });
+      });
+
+      function addActive(clikedField, index) {
+        fields.forEach((field) => {
+          field.classList.remove("active");
+        });
+        clikedField.classList.add("active");
+        addHideClass();
+        iconContents[index].classList.remove("hide");
+      }
+      function addHideClass() {
+        iconContents.forEach((item) => item.classList.add("hide"));
+      }
     </script>
   </body>
 </html>
