@@ -307,8 +307,27 @@
             justify-content: center;
             align-items: center;
           }
-          .homepage{
+          .homepage.ani{
+            overflow: hidden;
             transition: all 3s ease;
+            animation:swipe .3s ease;
+          }
+          @keyframes swipe {
+            0%{
+              transform:translateX(100px);
+             
+            }
+          }
+          .homepage{
+            overflow: hidden;
+            transition: all 3s ease;
+            animation:swipes .3s ease;
+          }
+          @keyframes swipes {
+            0%{
+              transform: translateX(-100px);
+             
+            }
           }
         </style>
         <div class="tabs">
@@ -431,12 +450,12 @@
       function nextdept(dept) {
         branches.forEach((branch) => branch.classList.remove("active"));
         showdept(index)
-        dept.classList.add("active");
+        branches[index].classList.add("active");
       }
       function showdept(index){
         pages.forEach(page =>{
           page.classList.add('hide')
-          pages[index].classList.remove('hide') 
+          pages[index].classList.remove('hide')
           
          
         })
@@ -453,18 +472,19 @@
 
     document.addEventListener("touchend", () => {
       if (startX + 100 < moveX) {
-        console.log("left");
+        
         
         index=index>0?--index:0
+        pages[index].classList.remove('ani')
        b()
-        console.log(index)
       } else if (startX - 100 > moveX) {
        
-        console.log("right");
+       
         
         index= index<14?++index:1
+        pages[index].classList.add('ani')
         b()
-        console.log(index)
+       
       }
     });
       let departments = ['ECE','CSE','EEE','MECH','CIVIL','IT']
