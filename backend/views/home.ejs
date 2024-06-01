@@ -19,6 +19,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="home.css" />
+    </head>
     <style>
       .user-profile {
         width: 25px;
@@ -124,9 +125,11 @@
       .fa-hands-holding-child {
         margin: 0px 5px 0px 5px;
       }
+      .container{
+        overflow: hidden;
+      }
      
     </style>
-  </head>
   <body>
     <div class="container home">
       <header>
@@ -314,7 +317,7 @@
           }
           @keyframes swipe {
             0%{
-              transform:translateX(100px);
+              transform:translateX(250px);
              
             }
           }
@@ -325,7 +328,7 @@
           }
           @keyframes swipes {
             0%{
-              transform: translateX(-100px);
+              transform: translateX(-250px);
              
             }
           }
@@ -396,6 +399,30 @@
       <div class="homepage">
         <div class="skeleton-loading"></div>
         <div class="IT_facultys__list"></div>
+      </div>
+      <div class="homepage">
+        <div class="skeleton-loading"></div>
+        <div class="AIDS_facultys__list"></div>
+      </div>
+      <div class="homepage">
+        <div class="skeleton-loading"></div>
+        <div class="AIML_facultys__list"></div>
+      </div>
+      <div class="homepage">
+        <div class="skeleton-loading"></div>
+        <div class="CSD_facultys__list"></div>
+      </div>
+      <div class="homepage">
+        <div class="skeleton-loading"></div>
+        <div class="BME_facultys__list"></div>
+      </div>
+      <div class="homepage">
+        <div class="skeleton-loading"></div>
+        <div class="FT_facultys__list"></div>
+      </div>
+      <div class="homepage">
+        <div class="skeleton-loading"></div>
+        <div class="MCT_facultys__list"></div>
       </div>
 
     <script type="module" src="home.js"></script>
@@ -487,7 +514,7 @@
        
       }
     });
-      let departments = ['ECE','CSE','EEE','MECH','CIVIL','IT']
+      let departments = ['ECE','CSE','EEE','MECH','CIVIL','IT','AIDS','AIML','CSD','BME','FT','MCT']
       departments.forEach(dept =>{
         loadStaffs(dept)
       })
@@ -495,8 +522,9 @@
       async function loadStaffs(dept){
         let req = await fetch(`/api/v1/staffs/${dept}`);
         let res = await req.json()
-        console.log(res.message =='success')
-        if(res.message =="success"){
+        
+      
+        if(res.message =="success" && res.result>0){
           let staffs = res.staffs
           staffs.forEach(staff =>{
             let template = `
@@ -515,14 +543,17 @@
             </a>
             `
             document.querySelector(`.homepage .${dept}_facultys__list`).innerHTML+=template;
-           
-           
           })
+        } else{
+          document.querySelector(`.homepage .${dept}_facultys__list`).innerHTML='<center style="margin-top :50px"><p>Staffs not avaliable</p></center>';
         }
-      }
+       }
+     
 
      
-      
+
+     
+    
     </script>
   </body>
 </html>
