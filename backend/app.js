@@ -50,10 +50,7 @@ app.use(
 );
 app.use("/optimize", express.static(path.join(__dirname, "..", "public")));
 app.use("/myaccount", express.static(path.join(__dirname, "..", "public")));
-app.use(
-  "/api/v1/staffs",
-  express.static(path.join(__dirname, "..", "public"))
-);
+app.use("/api/v1/staffs", express.static(path.join(__dirname, "..", "public")));
 app.use(
   "/api/v1/staffs",
   express.static(path.join(__dirname, "..", "public", "uploads"))
@@ -186,7 +183,7 @@ app.post("/", async (req, res) => {
   }
 });
 
-app.get("/api/v1/staffs",isLogin, async (req, res) => {
+app.get("/api/v1/staffs", isLogin, async (req, res) => {
   try {
     let query = { ...req.query };
     let exculdedFields = { name: 1, position: 1, image: 1 };
@@ -225,10 +222,10 @@ app.get("/logout", async (req, res) => {
   res.status(200).render("signin.ejs");
 });
 
-app.get("/database/reset", async (req, res) => {
-  await Tour.deleteMany();
-  res.redirect("/");
-});
+// app.get("/database/reset", async (req, res) => {
+//   await Tour.deleteMany();
+//   res.redirect("/");
+// });
 
 app.get("/myaccount", isLogin, async (req, res) => {
   try {
@@ -369,6 +366,17 @@ app.get("/api/v1/dashboard", isLogin, async (req, res) => {
   } catch (err) {
     res.status(500).json(err.message);
   }
+});
+
+app.get("/api/v1/staffs/:dept", isLogin, async (req, res) => {
+  const dept = req.params.dept.toUpperCase();
+ 
+  const staffs = await Tour.find({ department: dept });
+  res.status(200).json({
+    message: "success",
+    result: staffs.length,
+    staffs,
+  });
 });
 
 module.exports = app;
