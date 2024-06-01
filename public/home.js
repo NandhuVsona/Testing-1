@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let hampage = document.querySelector(".hampage");
 
-  searchBar.addEventListener("input", (e) => filterData(e.target.value));
+  // searchBar.addEventListener("input", (e) => filterData(e.target.value));
 
   function filterData(searchTerm) {
     let profile = document.querySelectorAll(".profile");
@@ -21,22 +21,22 @@ document.addEventListener("DOMContentLoaded", () => {
   let options = document.querySelector(".options");
   let closebtn = document.querySelector(".close");
   let filterOptions = document.querySelector(".filter-options");
-  menu.addEventListener("click", menuClose);
-  closebtn.addEventListener("click", menuClose);
+  // menu.addEventListener("click", menuClose);
+  // closebtn.addEventListener("click", menuClose);
   function optionController() {
     options.classList.toggle("hide");
     menu.classList.toggle("hide");
     closebtn.classList.toggle("hide");
   }
-  function menuClose() {
-    if (!filterOptions.classList.contains("hide")) {
-      filterOptions.classList.toggle("hide");
-    }
-    optionController();
-  }
+  // function menuClose() {
+  //   if (!filterOptions.classList.contains("hide")) {
+  //     filterOptions.classList.toggle("hide");
+  //   }
+  //   optionController();
+  // }
 
-  let filter = document.querySelector(".filter");
-  filter.addEventListener("click", showDept);
+  // let filter = document.querySelector(".filter");
+  // filter.addEventListener("click", showDept);
   function showDept() {
     if (!options.classList.contains("hide")) {
       optionController();
@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
     filterOptions.classList.toggle("hide");
   }
 
-  let isClick = document.querySelectorAll(".options ul a");
-  isClick.forEach(option =>{
-    option.addEventListener('click',menuClose)
-  })
+  // let isClick = document.querySelectorAll(".options ul a");
+  // isClick.forEach(option =>{
+  //   option.addEventListener('click',menuClose)
+  // })
 });
