@@ -471,13 +471,13 @@
     });
 
     document.addEventListener("touchend", () => {
-      if (startX + 50 < moveX) {
+      if (startX + 100 < moveX) {
         
         
         index=index>0?--index:0
         pages[index].classList.remove('ani')
        b()
-      } else if (startX - 50 > moveX) {
+      } else if (startX - 100 > moveX) {
        
        
         
