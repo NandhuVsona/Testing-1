@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const isdark = JSON.parse(localStorage.getItem("mode"));
   let container = document.querySelector(".container");
-  console.log(isdark);
+
   if (isdark == "Dark") {
     container.classList.add("dark");
   }
@@ -31,34 +31,30 @@ document.addEventListener("DOMContentLoaded", () => {
   let options = document.querySelector(".options");
   let closebtn = document.querySelector(".close");
   let filterOptions = document.querySelector(".filter-options");
-  // menu.addEventListener("click", menuClose);
-  // closebtn.addEventListener("click", menuClose);
+  menu.addEventListener("click", menuClose);
+  closebtn.addEventListener("click", menuClose);
   function optionController() {
     options.classList.toggle("hide");
     menu.classList.toggle("hide");
     closebtn.classList.toggle("hide");
   }
-  // function menuClose() {
-  //   if (!filterOptions.classList.contains("hide")) {
-  //     filterOptions.classList.toggle("hide");
-  //   }
-  //   optionController();
-  // }
+  function menuClose() {
+   
+    optionController();
+  }
 
-  // let filter = document.querySelector(".filter");
-  // filter.addEventListener("click", showDept);
   function showDept() {
     if (!options.classList.contains("hide")) {
       optionController();
     }
 
-    filterOptions.classList.toggle("hide");
+ 
   }
 
-  // let isClick = document.querySelectorAll(".options ul a");
-  // isClick.forEach(option =>{
-  //   option.addEventListener('click',menuClose)
-  // })
+  let isClick = document.querySelectorAll(".options ul a");
+  isClick.forEach(option =>{
+    option.addEventListener('click',menuClose)
+  })
 });
 
 let theme = document.querySelector(".theme");

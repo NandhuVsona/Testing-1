@@ -185,13 +185,15 @@
       .homepage.index{
         animation: none
       }
+      .homepage.index{
+        transition: all 3s ease;
+        animation:swipeY .3s ease;
+      }
       @keyframes swipeY {
         0%{
           transform: translateX(-250px);
          
         }
-        
-      
       }
       .container{
         position: relative;
@@ -202,6 +204,9 @@
       }
       .homepage{
         margin-top: 80px;
+      }
+      .bar i,.theme i{
+        font-size: 20px;
       }
      
     </style>
@@ -336,6 +341,10 @@
         <div class="skeleton-loading"></div>
         <div class="CSD_facultys__list"></div>
       </div>
+       <div class="homepage">
+        <div class="skeleton-loading"></div>
+        <div class="MCT_facultys__list"></div>
+      </div>
       <div class="homepage">
         <div class="skeleton-loading"></div>
         <div class="BME_facultys__list"></div>
@@ -344,10 +353,7 @@
         <div class="skeleton-loading"></div>
         <div class="FT_facultys__list"></div>
       </div>
-      <div class="homepage">
-        <div class="skeleton-loading"></div>
-        <div class="MCT_facultys__list"></div>
-      </div>
+     
 
     <script type="module" src="home.js"></script>
     <script>

@@ -187,14 +187,7 @@
   .call {
     background-color: rgb(36, 162, 246);
   }
-  .gobackbtn {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-  }
-  .backward i {
-    font-size: 30px;
-  }
+ 
   .facultys__data {
     position: relative;
   }
@@ -220,12 +213,7 @@
     font-size: 18px;
     border-radius: 10px;
   }
-  .back {
-    width: 100%;
-    background-color: rgb(140, 34, 239);
-    color: white;
-    margin: 5px 0px;
-  }
+ 
   
   .profile__ {
     display: flex;
