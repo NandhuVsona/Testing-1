@@ -173,7 +173,7 @@
       }
       @keyframes swipeX {
         0%{
-          transform:translateX(250px);
+          transform:rotateY(180deg) scaleY(.8) translateX(550px);
          
         }
       }
@@ -185,10 +185,7 @@
       .homepage.index{
         animation: none
       }
-      .homepage.index{
-        transition: all 3s ease;
-        animation:swipeY .3s ease;
-      }
+     
       @keyframes swipeY {
         0%{
           transform: translateX(-250px);
