@@ -27,32 +27,13 @@
         border-radius: 50%;
         overflow: hidden;
       }
-      .filter {
-        position: relative;
-      }
-      .filter-options {
-        animation: slideDown 0.3s ease-in-out;
-        position: absolute;
-        top: 35px;
-        right: 100%;
-        background-color: aquamarine;
-        transition: all 0.3s ease;
-        transform-origin: top;
-      }
+     
       @keyframes slideDown {
         0% {
           transform: scaleY(0);
         }
       }
-      .filter-options ul {
-        width: 180px;
-      }
-      .filter-options ul a {
-        width: 100%;
-      }
-      .filter-options.hide {
-        display: none;
-      }
+     
       .skeleton-loading {
         display: grid;
         grid-template-columns: 1fr;
@@ -162,14 +143,14 @@
         border-bottom: 4px solid #ffffff;
       }
       .tabs .tab_bar div.active i{
-       animation: rotate .8s ease ;
+       animation: branchlogo .8s ease ;
       }
       @keyframes sliderotate {
         0%{
           transform: translateY(50px);
         }
       }
-      @keyframes rotate {
+      @keyframes branchlogo {
         0%{
           transform: translateY(-50px);
         }
@@ -188,9 +169,9 @@
       .homepage.ani{
         overflow: hidden;
         transition: all 3s ease;
-        animation:swipe .3s ease;
+        animation:swipeX .3s ease;
       }
-      @keyframes swipe {
+      @keyframes swipeX {
         0%{
           transform:translateX(250px);
          
@@ -199,12 +180,12 @@
       .homepage{
         overflow: hidden;
         transition: all 3s ease;
-        animation:swipes .3s ease;
+        animation:swipeY .3s ease;
       }
       .homepage.index{
         animation: none
       }
-      @keyframes swipes {
+      @keyframes swipeY {
         0%{
           transform: translateX(-250px);
          
