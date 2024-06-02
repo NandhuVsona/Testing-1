@@ -134,6 +134,12 @@
 
         flex-grow: 1;
         height: 30px;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;
+  
+      }
+      .tabs::-webkit-scrollbar {
+        display: none;
       }
 
       .tabs .tab_bar div {
@@ -204,6 +210,17 @@
          
         }
         
+      
+      }
+      .container{
+        position: relative;
+      }
+      header{
+        position: fixed !important;
+        
+      }
+      .homepage{
+        margin-top: 80px;
       }
      
     </style>
