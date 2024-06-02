@@ -497,6 +497,27 @@
       box-shadow: -10px -10px 15px rgba(255, 255, 255, 0.5),
         10px 10px 15px rgba(70, 70, 70, 0.15);
     }
+
+    .container.dark,.container.dark+.count-body+.previous-records header{
+      background-color: #2e2e2e;
+      color: #ffffff;
+      background-image: none;
+    }
+    .container.dark .dp__ {
+      box-shadow: none;
+    }
+    .container.dark table .day,
+    .container.dark table th {
+      background-color: rgb(101, 101, 101);
+    }
+    .container.dark .icons i{
+      background-color: #fff;
+      color: #000000;
+    }
+    .container.dark .icons.active i{
+      background-color: #00ddff;
+      color: #000000;
+    }
   </style>
 
   <body>
@@ -542,7 +563,7 @@
             <li class="icons"><i class="fa-solid fa-location-dot"></i></li>
             <li class="icons"><i class="fa-solid fa-envelope"></i></li>
             <li class="active icons"><i class="fa-solid fa-user"></i></li>
-            <li><i class="fa-solid fa-layer-group"></i></li>
+            <li class="icons"><i class="fa-solid fa-layer-group"></i></li>
             <li class="icons"><i class="fa-solid fa-book"></i></li>
           </ul>
         </div>
@@ -685,6 +706,16 @@
     </div>
 
     <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let mode = JSON.parse(localStorage.getItem("mode"));
+        if (mode == "Dark") {
+          document.querySelector(".container").classList.add("dark");
+          document.querySelector("body").style.backgroundColor = "#2e2e2e";
+        } else {
+          document.querySelector(".container").classList.remove("dark");
+          document.querySelector("body").style.backgroundColor = "";
+        }
+      });
       let todayStatus = document.querySelector(".today-status");
       let todaySwitch = document.querySelector(".today-switch");
       todayStatus.addEventListener("click", () => {
