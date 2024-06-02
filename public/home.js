@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const isdark = JSON.parse(localStorage.getItem("mode"));
+  let container = document.querySelector(".container");
+  console.log(isdark);
+  if (isdark == "Dark") {
+    container.classList.add("dark");
+  }
+  else{
+    container.classList.remove("dark");
+  }
+
   let searchBar = document.querySelector(".search");
 
   let hampage = document.querySelector(".hampage");
@@ -50,3 +60,16 @@ document.addEventListener("DOMContentLoaded", () => {
   //   option.addEventListener('click',menuClose)
   // })
 });
+
+let theme = document.querySelector(".theme");
+theme.addEventListener("click", changeTheme);
+function changeTheme() {
+  let container = document.querySelector(".container");
+  container.classList.toggle("dark");
+  if (container.classList.contains("dark")) {
+    localStorage.setItem("mode", JSON.stringify("Dark"));
+  }
+  else{
+    localStorage.setItem("mode", JSON.stringify("Light"));
+  }
+}

@@ -178,6 +178,9 @@
         transition: all 3s ease;
         animation:swipes .3s ease;
       }
+      .homepage.index{
+        animation: none
+      }
       @keyframes swipes {
         0%{
           transform: translateX(-250px);
@@ -339,7 +342,7 @@
           </div>
         </div>
       </header>
-      <div class="homepage">
+      <div class="homepage index">
         <div class="skeleton-loading"></div>
         <div class="facultys__list">
           <%if(locals.staffs.length>=1){%> <% staffs.forEach(staff =>{ %>
@@ -422,12 +425,7 @@
         loading.style.display = "none";
         mainContent.style.visibility = "visible";
       });
-      let theme = document.querySelector(".theme");
-      theme.addEventListener("click", changeTheme);
-      function changeTheme() {
-        let container = document.querySelector(".container");
-        container.classList.toggle("dark");
-      }
+      
 
       //Skeleton Loading effect
 
@@ -496,7 +494,7 @@
        
        
         
-        index= index<14?++index:1
+        index= index<14?++index:13
         pages[index].classList.add('ani')
         b()
        
@@ -533,7 +531,7 @@
             document.querySelector(`.homepage .${dept}_facultys__list`).innerHTML+=template;
           })
         } else{
-          document.querySelector(`.homepage .${dept}_facultys__list`).innerHTML='<center style="margin-top :50px"><p>Staffs not avaliable</p></center>';
+          document.querySelector(`.homepage .${dept}_facultys__list`).innerHTML='<center style="margin-top :50px"><large>Staffs not avaliable</large></center>';
         }
        }
     
