@@ -442,16 +442,16 @@
         })
       }
       let startX, startY, moveX;
-    
-    document.addEventListener("touchstart", (e) => {
+  pages.forEach(page =>{
+   page.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
     });
-    document.addEventListener("touchmove", (e) => {
+   page.addEventListener("touchmove", (e) => {
       moveX = e.touches[0].clientX;
     });
 
-    document.addEventListener("touchend", () => {
+   page.addEventListener("touchend", () => {
       if (startX + 100 < moveX) {
         
         
@@ -468,6 +468,8 @@
        
       }
     });
+  })
+    
       let departments = ['ECE','CSE','EEE','MECH','CIVIL','IT','AIDS','AIML','CSD','MCT','BME','FT']
       departments.forEach(dept =>{
         loadStaffs(dept)
