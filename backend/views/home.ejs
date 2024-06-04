@@ -201,6 +201,7 @@
       }
       .homepage{
         margin-top: 80px;
+        height: 100%;
       }
       .bar i,.theme i{
         font-size: 20px;
@@ -387,14 +388,32 @@
       let index = 0
       let branches = document.querySelectorAll(".tabs .tab_bar div");
       let pages = document.querySelectorAll(".homepage");
-  
+      branches.forEach((branch,i)=>{
+        branch.addEventListener('mouseover',()=>{
+          
+          branches.forEach((branch,) => branch.classList.remove("active"));
+          showdept(i)
+          branches[i].classList.add("active");
+        })
+      })
+      branches.forEach((branch,i)=>{
+        branch.addEventListener('click',()=>{
+          
+          branches.forEach((branch,) => branch.classList.remove("active"));
+          showdept(i)
+          branches[i].classList.add("active");
+        })
+      })
      function b(){
       branches.forEach((branch) => {
-       
+        
           nextdept(branch)
          
        
       });
+
+      
+      
      }
       function nextdept(dept) {
         branches.forEach((branch) => branch.classList.remove("active"));
