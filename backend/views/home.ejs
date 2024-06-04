@@ -384,26 +384,16 @@
       }
     </script>
 
-    <script>
+     <script>
       let index = 0
       let branches = document.querySelectorAll(".tabs .tab_bar div");
       let pages = document.querySelectorAll(".homepage");
-      branches.forEach((branch,i)=>{
-        branch.addEventListener('mouseover',()=>{
-          
-          branches.forEach((branch,) => branch.classList.remove("active"));
-          showdept(i)
-          branches[i].classList.add("active");
-          index = i
-        })
-      })
+      
       branches.forEach((branch,i)=>{
         branch.addEventListener('click',()=>{
-          
-          branches.forEach((branch,) => branch.classList.remove("active"));
-          showdept(i)
-          branches[i].classList.add("active");
           index = i
+          nextDeptForClickE(index)
+          
         })
       })
      function b(){
@@ -417,6 +407,12 @@
       
       
      }
+     function nextDeptForClickE(dept) {
+      branches.forEach((branch) => branch.classList.remove("active"));
+     showdept(dept)
+      branches[index].classList.add("active");
+      
+    }
       function nextdept(dept) {
         branches.forEach((branch) => branch.classList.remove("active"));
         showdept(index)
@@ -458,12 +454,11 @@
         pages.forEach(page =>{
           page.classList.add('hide')
           pages[index].classList.remove('hide')
-          
-         
         })
       }
+      
       let startX, startY, moveX;
-  pages.forEach(page =>{
+    pages.forEach(page =>{
    page.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
