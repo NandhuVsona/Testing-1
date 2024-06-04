@@ -370,13 +370,51 @@ app.get("/api/v1/dashboard", isLogin, async (req, res) => {
 
 app.get("/api/v1/staffs/:dept", isLogin, async (req, res) => {
   const dept = req.params.dept.toUpperCase();
- 
+
   const staffs = await Tour.find({ department: dept });
   res.status(200).json({
     message: "success",
     result: staffs.length,
     staffs,
   });
+});
+
+app.post("/optimized/:id", isLogin, async (req, res) => {
+  try {
+    const daysOfWeek = ["mon", "tue", "wed", "thu", "fri", "sat"];
+    const schedule = {};
+
+    daysOfWeek.forEach((day) => {
+      schedule[`${day}Schedule`] = {
+        firstPeriod: req.body[`${day}_first_period`] || " ",
+        secondPeriod: req.body[`${day}_second_peroid`] || " ",
+        thirdPeriod: req.body[`${day}_third_period`] || " ",
+        fourthPeriod: req.body[`${day}_forth_peroid`] || " ",
+        fifthPeriod: req.body[`${day}_fifth_period`] || " ",
+        sixthPeriod: req.body[`${day}_sixth_period`] || " ",
+        seventhPeriod: req.body[`${day}_seventh_period`] || " ",
+      };
+    });
+
+    data = {
+      name: req.body.name,
+      department: req.body.department,
+      position: req.body.position,
+      location: req.body.location,
+      gender: req.body.gender,
+      monday: schedule.monSchedule,
+      tuesday: schedule.tueSchedule,
+      wednesday: schedule.wedSchedule,
+      thursday: schedule.thuSchedule,
+      friday: schedule.friSchedule,
+      saturday: schedule.satSchedule,
+    };
+    let staff = await Tour.findByIdAndUpdate(req.params.id, data);
+    res.status(200).render("account.ejs", { staff: staff });
+    
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
 });
 
 module.exports = app;
