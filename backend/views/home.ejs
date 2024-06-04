@@ -72,7 +72,7 @@
       }
 
       @media screen and (min-width: 730px) {
-        .facultys__list {
+        .facultys__list,[class*="facultys__list"]{
           display: grid;
           grid-template-columns: 1fr 1fr;
         }
@@ -85,7 +85,7 @@
         }
       }
       @media screen and (min-width: 1023px) {
-        .facultys__list {
+        .facultys__list,[class*="facultys__list"] {
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
         }
@@ -379,6 +379,7 @@
   </div>
 </a>`;
 
+
       for (let i = 0; i < 21; i++) {
         loading.innerHTML += template;
       }
@@ -454,6 +455,7 @@
         pages.forEach(page =>{
           page.classList.add('hide')
           pages[index].classList.remove('hide')
+          pages[index].style.display='flex !important'
         })
       }
       
