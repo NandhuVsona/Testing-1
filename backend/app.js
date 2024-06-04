@@ -411,7 +411,14 @@ app.post("/optimized/:id", isLogin, async (req, res) => {
     };
     let staff = await Tour.findByIdAndUpdate(req.params.id, data);
     res.status(200).render("account.ejs", { staff: staff });
-    
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+});
+
+app.get("/internal-mark-calculator", (req, res) => {
+  try {
+    res.status(200).render("internalC.ejs");
   } catch (err) {
     res.status(500).json(err.message);
   }
