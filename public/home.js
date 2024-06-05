@@ -65,6 +65,56 @@ function changeTheme() {
   }
 }
 
+let departments = [
+  "ECE",
+  "CSE",
+  "EEE",
+  "MECH",
+  "CIVIL",
+  "IT",
+  "AIDS",
+  "AIML",
+  "CSD",
+  "MCT",
+  "BME",
+  "FT",
+];
+departments.forEach((dept) => {
+  loadStaffs(dept);
+});
+
+async function loadStaffs(dept) {
+  let req = await fetch(`/api/v1/staffs/${dept}`);
+  let res = await req.json();
+
+  if (res.message == "success" && res.result > 0) {
+    let staffs = res.staffs;
+    staffs.forEach((staff) => {
+      let template = `
+            <a href="/overview/${staff._id}">
+              <div class="profile">
+                <div class="dp">
+                  <img src="/uploads/${staff.image}" alt="${staff.name} img" />
+                </div>
+                <div class="details">
+                  <h4 class="faculty__name">${staff.name}</h4>
+                  <p class="faculty__details">
+                    ${staff.position} in ${staff.department}
+                  </p>
+                </div>
+              </div>
+            </a>
+            `;
+      document.querySelector(`.homepage .${dept}_facultys__list`).innerHTML +=
+        template;
+    });
+  } else {
+    document.querySelector(`.homepage .${dept}_facultys__list`).innerHTML =
+      '<center style="margin-top :50px"><large>Staffs not avaliable</large></center>';
+  }
+}
+//--------------------------------------------------------------------
+
 //---------------------------------------------------------------
 
 let loading = document.querySelector(".skeleton-loading");
@@ -181,52 +231,3 @@ pages.forEach((page) => {
 });
 //--------------------------------------------------------
 
-let departments = [
-  "ECE",
-  "CSE",
-  "EEE",
-  "MECH",
-  "CIVIL",
-  "IT",
-  "AIDS",
-  "AIML",
-  "CSD",
-  "MCT",
-  "BME",
-  "FT",
-];
-departments.forEach((dept) => {
-  loadStaffs(dept);
-});
-
-async function loadStaffs(dept) {
-  let req = await fetch(`/api/v1/staffs/${dept}`);
-  let res = await req.json();
-
-  if (res.message == "success" && res.result > 0) {
-    let staffs = res.staffs;
-    staffs.forEach((staff) => {
-      let template = `
-            <a href="/overview/${staff._id}">
-              <div class="profile">
-                <div class="dp">
-                  <img src="/uploads/${staff.image}" alt="${staff.name} img" />
-                </div>
-                <div class="details">
-                  <h4 class="faculty__name">${staff.name}</h4>
-                  <p class="faculty__details">
-                    ${staff.position} in ${staff.department}
-                  </p>
-                </div>
-              </div>
-            </a>
-            `;
-      document.querySelector(`.homepage .${dept}_facultys__list`).innerHTML +=
-        template;
-    });
-  } else {
-    document.querySelector(`.homepage .${dept}_facultys__list`).innerHTML =
-      '<center style="margin-top :50px"><large>Staffs not avaliable</large></center>';
-  }
-}
-//--------------------------------------------------------------------

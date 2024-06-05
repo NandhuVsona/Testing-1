@@ -275,13 +275,12 @@ app.patch("/myaccount/:id", async (req, res) => {
   ];
   let date = new Date().toLocaleDateString();
   let today = days[new Date().getDay()];
-
   try {
     let isExist = await Tour.findOne({ _id: id }, { date: 1, _id: 0 });
     if (isExist.date.length != 0) {
       let isExistDate = isExist.date[isExist.date.length - 1].split(" ");
       if (isExistDate[1] == date) {
-        let staff = await Tour.findOne({ _id: id });
+        let staff = await Tour.findOne({ _id: id });   
         return res.status(201).render("account.ejs", { staff: staff });
       } else {
         let staff = await Tour.findOneAndUpdate(
@@ -295,6 +294,7 @@ app.patch("/myaccount/:id", async (req, res) => {
           },
           { new: true }
         );
+        
         res.status(200).render("account.ejs", { staff: staff });
       }
     } else {

@@ -31,11 +31,14 @@
         align-items: center;
         height: 100%;
         width: 100%;
+        overflow: hidden;
         overflow-y: scroll;
         flex-direction: column;
+
       }
       .first-section {
-        width: 350px;
+      
+        width: 400px;
         height: 400px;
         position: relative;
       }
@@ -54,13 +57,16 @@
         position: absolute;
         display: flex;
         flex-direction: column;
-        top: 9%;
+        top: 12%;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100%;
         width: 100%;
         z-index: -1;
+      }
+      .inner-text h1{
+        font-size: 50px;
       }
       header {
         display: flex;
@@ -204,6 +210,7 @@
         }
         .inner-text {
           font-size: 25px;
+          top:10%
         }
       }
     </style>
@@ -264,7 +271,7 @@
 
         let req = await fetch("/api/v1/dashboard");
         let res = await req.json();
-        loadAbsentdata(res.absentStaffs);
+       
         let test = res.stats;
         test.forEach((dept) => {
           dataOne.labels.push(dept._id);
@@ -324,6 +331,7 @@
         // Initialize the chart
         let myChart = new Chart(canvasOne, configOne);
         let present = new Chart(canvasTwo, configTwo);
+        loadAbsentdata(res.absentStaffs)
       });
 
       let count = document.querySelector(".count");
@@ -340,6 +348,7 @@
         }
       }, 50);
 
+     
       function loadAbsentdata(data) {
         let container = document.querySelector(".facultys__list");
         if (data.length < 0) {
@@ -361,8 +370,7 @@
                     </div>
                   </div>
                 </a>   `;
-
-            container.innerHTML += template;
+                container.innerHTML+=template
           });
         }
       }
