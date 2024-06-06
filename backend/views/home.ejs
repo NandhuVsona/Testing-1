@@ -19,13 +19,61 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="home.css" />
-    </head>
     <style>
-     
-     
+      .logo {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        z-index: 10;
+      }
+      .logo-body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .logo-body img {
+        width: 150px;
+        height: 150px;
+        transition: all 0.3s ease;
+        animation: logoanimation 1s ease;
+      }
+      .logo-body h2 {
+        color: rgb(41, 41, 41);
+        word-spacing: 5px;
+        animation: title 1s ease;
+      }
+
+      @keyframes logoanimation {
+        0% {
+          transform: scale(0) rotate(30deg);
+        }
+      }
+      @keyframes title {
+        0% {
+          opacity: 0;
+          transform: translateY(150px);
+        }
+      }
+      .logo.visited {
+        display: none;
+      }
     </style>
+  </head>
+  <style></style>
   <body>
-    <div class="container home">
+    <div class="logo">
+      <div class="logo-body">
+        <img src="./logo.png" alt="logo" />
+        <h2>STAFFS STATUS</h2>
+      </div>
+    </div>
+    <div class="container home hide">
       <header>
         <div class="title">
           <h3><i class="fa-solid fa-hands-holding-child"></i> Staffs Status</h3>
@@ -78,22 +126,58 @@
         <!-- <div class="search__bar">
           <input type="text" placeholder="Search Staffs" class="search" />
         </div> -->
-       
+
         <div class="tabs">
           <div class="tab_bar">
             <div class="active">ALL</div>
-            <div> <i class="fa-solid fa-microchip"></i><p>ECE</p></div>
-            <div> <i class="fa-solid fa-code"></i><p>CSE</p></div>
-            <div><i class="fa-solid fa-plug" ></i><p>EEE</p></div>
-            <div> <i class="fa-solid fa-gear" ></i><p>MECH</p></div>
-            <div><i class="fa-solid fa-house-chimney" ></i><p>CIVIL</p></div>
-            <div><i class="fa-solid fa-laptop-code"></i><p>IT</p></div>
-            <div> <i class="fa-regular fa-folder-open"></i><p>AIDS</p></div>
-            <div>  <i class="fa-solid fa-user"></i><p>AIML</p></div>
-            <div> <i class="fa-brands fa-figma"></i><p>CSD</p></div>
-            <div><i class="fa-solid fa-robot"></i><p>MCT</p></div>
-            <div> <i class="fa-solid fa-wave-square"></i><p>BME</p></div>
-            <div> <i class="fa-solid fa-shirt"></i><p>FT</p></div>
+            <div>
+              <i class="fa-solid fa-microchip"></i>
+              <p>ECE</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-code"></i>
+              <p>CSE</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-plug"></i>
+              <p>EEE</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-gear"></i>
+              <p>MECH</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-house-chimney"></i>
+              <p>CIVIL</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-laptop-code"></i>
+              <p>IT</p>
+            </div>
+            <div>
+              <i class="fa-regular fa-folder-open"></i>
+              <p>AIDS</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-user"></i>
+              <p>AIML</p>
+            </div>
+            <div>
+              <i class="fa-brands fa-figma"></i>
+              <p>CSD</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-robot"></i>
+              <p>MCT</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-wave-square"></i>
+              <p>BME</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-shirt"></i>
+              <p>FT</p>
+            </div>
           </div>
         </div>
       </header>
@@ -158,7 +242,7 @@
         <div class="skeleton-loading"></div>
         <div class="CSD_facultys__list"></div>
       </div>
-       <div class="homepage">
+      <div class="homepage">
         <div class="skeleton-loading"></div>
         <div class="MCT_facultys__list"></div>
       </div>
@@ -170,12 +254,24 @@
         <div class="skeleton-loading"></div>
         <div class="FT_facultys__list"></div>
       </div>
-     
-
-    <script type="module" src="home.js"></script>
+    </div>
     <script>
+      let logoPage = document.querySelector(".logo");
       
-    
+      let isVisited = sessionStorage.getItem("isVisited");
+
+      if (!isVisited) {
+        setTimeout(() => {
+          sessionStorage.setItem("isVisited", "true");
+          logoPage.classList.add("visited");
+          document.querySelector(".container").classList.remove("hide");
+        }, 2000);
+      }
+      else{
+        logoPage.classList.add("visited");
+          document.querySelector(".container").classList.remove("hide");
+      }
     </script>
+    <script type="module" src="home.js"></script>
   </body>
 </html>
