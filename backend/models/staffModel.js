@@ -63,7 +63,7 @@ let staffShceme = new mongooes.Schema({
   image: {
     type: String,
     required: true,
-    required: [true, "Image required. Please Upload."],
+    // required: [true, "Image required. Please Upload."],
   },
   status: {
     type: String,

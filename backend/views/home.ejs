@@ -197,7 +197,12 @@
           <a href="/overview/<%=staff._id%>">
             <div class="profile">
               <div class="dp">
+                
+               <% if (staff.image) { %>
                 <img src="uploads/<%=staff.image%>" alt="<%=staff.name%> img" />
+                <% } else { %>
+                  <img src="uploads/dp.jpg" alt="<%=staff.name%> img" />
+                <% } %>
               </div>
               <div class="details">
                 <h4 class="faculty__name"><%=staff.name%></h4>
