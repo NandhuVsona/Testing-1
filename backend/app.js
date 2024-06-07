@@ -139,7 +139,7 @@ app.post("/home", uploads, async (req, res) => {
       thursday: schedule.thuSchedule,
       friday: schedule.friSchedule,
       saturday: schedule.satSchedule,
-      image: req.file.filename,
+      image: req.file.filename
     });
     await staff.save();
 
