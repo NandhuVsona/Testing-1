@@ -146,9 +146,9 @@ app.post("/home", uploads, async (req, res) => {
     res.status(200).render("signin.ejs", {
       msg: "Successfully registered login to continue..",
     });
-    if (!req.file) {
-      throw new Error("Image required. Please upload.");
-    }
+    // if (!req.file) {
+    //   throw new Error("Image required. Please upload.");
+    // }
   } catch (err) {
     res.status(500).render("signup.ejs", { msg: err.message });
   }
