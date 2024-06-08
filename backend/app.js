@@ -139,7 +139,7 @@ app.post("/home", uploads, async (req, res) => {
       thursday: schedule.thuSchedule,
       friday: schedule.friSchedule,
       saturday: schedule.satSchedule,
-      image: req.file.filename
+      image: req.file.filename,
     });
     await staff.save();
 
@@ -280,7 +280,7 @@ app.patch("/myaccount/:id", async (req, res) => {
     if (isExist.date.length != 0) {
       let isExistDate = isExist.date[isExist.date.length - 1].split(" ");
       if (isExistDate[1] == date) {
-        let staff = await Tour.findOne({ _id: id });   
+        let staff = await Tour.findOne({ _id: id });
         return res.status(201).render("account.ejs", { staff: staff });
       } else {
         let staff = await Tour.findOneAndUpdate(
@@ -294,7 +294,7 @@ app.patch("/myaccount/:id", async (req, res) => {
           },
           { new: true }
         );
-        
+
         res.status(200).render("account.ejs", { staff: staff });
       }
     } else {
@@ -442,19 +442,16 @@ app.get("/settings", isLogin, async (req, res) => {
   }
 });
 
-app.patch('/api/v1/update/:id',async (req,res)=>{
-  try{
-    
-   
-    let staff = await Tour.findByIdAndUpdate(req.params.id,req.body);
-    
+app.patch("/api/v1/update/:id", async (req, res) => {
+  try {
+    let staff = await Tour.findByIdAndUpdate(req.params.id, req.body);
+
     return res.status(200).json({
-      status:'ok',
-      message:"Successfully Updated.!"
-    })
-  }
-  catch(err){
+      status: "ok",
+      message: "Successfully Updated.!",
+    });
+  } catch (err) {
     res.status(500).json(err.message);
   }
-})
+});
 module.exports = app;
