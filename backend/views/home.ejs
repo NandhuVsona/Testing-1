@@ -63,13 +63,12 @@
       .logo.visited {
         display: none;
       }
-      .container{
+      .container {
         animation: opacity 1s ease;
       }
       @keyframes opacity {
         0% {
           opacity: 0;
-          
         }
       }
     </style>
@@ -124,6 +123,12 @@
               ><li><i class="fa-solid fa-calculator"></i> Internal Calc</li></a
             >
 
+            <a onclick="visit()"
+              ><li>
+                <i class="fa-solid fa-gear"></i>
+                Invite a friend
+              </li></a
+            >
             <a href="/settings"
               ><li>
                 <i class="fa-solid fa-gear"></i>
@@ -197,11 +202,10 @@
           <a href="/overview/<%=staff._id%>">
             <div class="profile">
               <div class="dp">
-                
-               <% if (staff.image) { %>
+                <% if (staff.image) { %>
                 <img src="uploads/<%=staff.image%>" alt="<%=staff.name%> img" />
                 <% } else { %>
-                  <img src="uploads/dp.jpg" alt="<%=staff.name%> img" />
+                <img src="uploads/dp.jpg" alt="<%=staff.name%> img" />
                 <% } %>
               </div>
               <div class="details">
@@ -271,7 +275,7 @@
     </div>
     <script>
       let logoPage = document.querySelector(".logo");
-      
+
       let isVisited = sessionStorage.getItem("isVisited");
 
       if (!isVisited) {
@@ -280,10 +284,22 @@
           logoPage.classList.add("visited");
           document.querySelector(".container").classList.remove("hide");
         }, 2000);
-      }
-      else{
+      } else {
         logoPage.classList.add("visited");
-          document.querySelector(".container").classList.remove("hide");
+        document.querySelector(".container").classList.remove("hide");
+      }
+
+      async function visit(){
+        shareData = {
+          title : 'Check out this Website.!',
+          text : 'I found this useful',
+          ulr : 'https://staffs-status-7rwi.onrender.com'
+        }
+        try{
+          if(navigator.share){
+            await navigator.share(shareData)
+          }
+        }
       }
     </script>
     <script type="module" src="home.js"></script>
