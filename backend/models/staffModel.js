@@ -3,9 +3,9 @@ const type = require("mongoose/lib/schema/operators/type");
 let staffShceme = new mongooes.Schema({
   name: {
     type: String,
-
     required: [true, "Name required. Please provide."],
     trim: true,
+    minlength:4,
   },
   email: {
     type: String,
@@ -16,6 +16,7 @@ let staffShceme = new mongooes.Schema({
   password: {
     type: String,
     required: [true, "Password required. Please provide."],
+    select:false,
   },
   department: {
     type: String,

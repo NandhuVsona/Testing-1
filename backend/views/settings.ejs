@@ -588,7 +588,7 @@
             saveBtn.parentElement.parentElement.parentElement.classList.remove(
               "show"
             );
-            if (field) {
+            if (field!=='') {
               field.innerHTML = value;
             }
             return res.json();

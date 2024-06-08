@@ -445,7 +445,7 @@ app.get("/settings", isLogin, async (req, res) => {
 app.patch("/api/v1/update/:id", async (req, res) => {
   try {
     let staff = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
+      new: true,runValidators: true
     });
 
     return res.status(200).json({
