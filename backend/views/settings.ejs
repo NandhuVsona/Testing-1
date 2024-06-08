@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        user-select: none;
+        font-family: "Poppins", "sanserif";
+      }
+      :root {
+        --primary: #f2f2f2ed;
+      }
+      .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+      }
+      a {
+        text-decoration: none;
+        color: black;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        padding-left: 15px;
+        border-bottom: 1px solid rgb(195, 195, 195);
+      }
+      p {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .container a i {
+        font-size: 25px;
+        color: #8c8c8c;
+      }
+      section {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+     
+      @keyframes rotate {
+        0% {
+          transform: scale(3) rotate(360deg);
+          background: linear-gradient(
+            to bottom left,
+            rgb(4, 79, 241),
+            rgb(54, 231, 166),
+            rgb(132, 0, 247)
+          );
+        }
+      }
+      a:hover {
+        background-color: rgb(240, 240, 240);
+      }
+      .input-box-name,
+      .input-box-password,
+      .input-box-wapp,
+      .input-box-phone {
+        width: 100%;
+        height: 100vh;
+        background-color: rgb(255, 255, 255);
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .box-body {
+        font-size: 18px;
+        padding: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: absolute;
+        background-color: rgb(229, 229, 229) !important;
+        top: 0px;
+        z-index: 1;
+        border-radius: 5px;
+      }
+      .input-box-name.show .box-body,
+      .input-box-password.show .box-body,
+      .input-box-wapp.show .box-body,
+      .input-box-phone.show .box-body {
+        animation: down 0.5s ease;
+      }
+
+      @keyframes down {
+        0% {
+          opacity: 0;
+          transform: translateY(-200px);
+        }
+      }
+      .box-body .input {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .box-body .input input {
+        height: 50px;
+        padding-left: 10px;
+        border: none;
+        width: 100%;
+        font-size: 20px;
+        font-weight: 500;
+      }
+      input:focus {
+        outline: none;
+      }
+      .btns {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      .btns button {
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 16px;
+        border: none;
+        background-color: #fff;
+      }
+
+      .input-box-name.show,
+      .input-box-password.show,
+      .input-box-wapp.show,
+      .input-box-phone.show {
+        display: flex;
+      }
+      .input-box-name.show + .input-box-password + main,
+      .input-box-password.show + main {
+        display: none;
+      }
+      .icons-input {
+        background-color: #ffffff;
+        border: 1px solid groove;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        width: 100%;
+        padding-left: 15px;
+      }
+      .icons-input i {
+        font-size: inherit;
+
+      }
+      main {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .fa-angle-right {
+        position: absolute;
+        right: 25px;
+        color: #a6a6a6 !important;
+      }
+    
+    
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="input-box-name box-container">
+        <div class="box-body">
+          <div class="input">
+            <label for="name">Enter your name</label>
+            <div class="icons-input">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" id="name" value="Simon Y" />
+            </div>
+          </div>
+          <div class="btns">
+            <button class="discard">Discard</button>
+            <button>Save</button>
+          </div>
+        </div>
+      </div>
+      <div class="input-box-password box-container">
+        <div class="box-body">
+          <div class="input">
+            <label for="password">Enter your old Password</label>
+            <input type="text" id="password" />
+          </div>
+          <div class="input">
+            <label for="name">New Password</label>
+            <input type="text" id="name" />
+          </div>
+          <div class="input">
+            <label for="name">Confirm Password</label>
+            <input type="text" id="name" />
+          </div>
+          <div class="btns">
+            <button class="discard">Discard</button>
+            <button>Save</button>
+          </div>
+        </div>
+      </div>
+      <div class="input-box-wapp box-container">
+        <div class="box-body">
+          <div class="input">
+            <label for="wapp">Enter your whatsapp number</label>
+            <div class="icons-input">
+              <i class="fa-brands fa-whatsapp"></i>
+              <input type="tell" id="wapp" value="+91" />
+            </div>
+          </div>
+          <div class="btns">
+            <button class="discard">Discard</button>
+            <button>Save</button>
+          </div>
+        </div>
+      </div>
+      <div class="input-box-phone box-container">
+        <div class="box-body">
+          <div class="input">
+            <label for="phone">Enter your Phone number</label>
+            <div class="icons-input">
+              <i class="fa-solid fa-phone-volume"></i>
+              <input type="tell" id="phone" value="+91" />
+            </div>
+          </div>
+          <div class="btns">
+            <button class="discard">Discard</button>
+            <button>Save</button>
+          </div>
+        </div>
+      </div>
+      <main>
+        <a id="inputbox">
+          <i class="fa-solid fa-user-pen"></i>
+          <section>
+            <p>Simon Y</p>
+            <small>Tap to edit your name.</small>
+          </section>
+
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a id="change-password">
+          <i class="fa-solid fa-lock"></i>
+          <section>
+            <p>Change Password</p>
+            <small>Want to change your password ?</small>
+          </section>
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a id="gender">
+          <i class="fa-solid fa-people-group"></i>
+          <section>
+            <p>Gender</p>
+            <small>Tap to correct the gender</small>
+          </section>
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a id="wapp-number">
+          <i class="fa-brands fa-whatsapp"></i>
+          <section>
+            <p>Whatapp Number</p>
+            <small>Tap to add your whatsapp Number</small>
+          </section>
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a id="phone-number">
+          <i class="fa-solid fa-phone-volume"></i>
+          <section>
+            <p>Phone Number</p>
+            <small>Tap to add your phone Number</small>
+          </section>
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a id="location">
+          <i class="fa-solid fa-location-crosshairs"></i>
+          <section>
+            <p>Location</p>
+            <small>Tap to change your location</small>
+          </section>
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a id="position">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <section>
+            <p>Desigation</p>
+            <small>Tap to change your desigatiion</small>
+          </section>
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a id="branch">
+          <i class="fa-solid fa-layer-group"></i>
+          <section>
+            <p>Department</p>
+            <small>Tap to change your Dept</small>
+          </section>
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a href="">
+          <i class="fa-solid fa-shield-halved"></i>
+          <section>
+            <p>Terms & conditions</p>
+            <small>Tap to add your phone Number</small>
+          </section>
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a href="">
+          <i class="fa-solid fa-trash-can"></i>
+          <section>
+            <p>Delete Account</p>
+            <small>Permenentaly delete your acccount</small>
+          </section>
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+        <a href="/logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <section>
+            <p>Logout</p>
+            <small>Deactivate JWT</small>
+          </section>
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+
+      
+      </main>
+    </div>
+    <script>
+      let editName = document.getElementById("inputbox");
+      let changePassword = document.getElementById("change-password");
+      let wappNumber = document.getElementById("wapp-number");
+      let phoneNumber = document.getElementById("phone-number");
+      let inputbox = document.querySelector(".input-box-name");
+      let passwordbox = document.querySelector(".input-box-password");
+      let wappbox = document.querySelector(".input-box-wapp");
+      let phonebox = document.querySelector(".input-box-phone");
+      let discard = document.querySelectorAll(".discard");
+      editName.addEventListener("click", () => {
+        inputbox.classList.add("show");
+        let name = document.querySelector("#name");
+        name.setSelectionRange(name.value.length, name.value.length);
+        name.focus();
+      });
+      changePassword.addEventListener("click", () => {
+        passwordbox.classList.add("show");
+        document.querySelector("#password").focus();
+      });
+      wappNumber.addEventListener("click", () => {
+        wappbox.classList.add("show");
+      });
+      phoneNumber.addEventListener("click", () => {
+        phonebox.classList.add("show");
+      });
+
+      discard.forEach((btn, index) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".box-container")
+            [index].classList.remove("show");
+        });
+      });
+    </script>
+  </body>
+</html>

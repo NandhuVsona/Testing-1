@@ -423,5 +423,19 @@ app.get("/internal-mark-calculator", (req, res) => {
     res.status(500).json(err.message);
   }
 });
+app.get("/settings", (req, res) => {
+  try {
+    res.status(200).render("settings.ejs");
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+});
+app.get("/internal-mark-calculator", (req, res) => {
+  try {
+    res.status(200).render("internalC.ejs");
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+});
 
 module.exports = app;
