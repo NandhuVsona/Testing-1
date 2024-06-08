@@ -423,13 +423,7 @@ app.get("/internal-mark-calculator", (req, res) => {
     res.status(500).json(err.message);
   }
 });
-app.get("/settings", (req, res) => {
-  try {
-    res.status(200).render("settings.ejs");
-  } catch (err) {
-    res.status(500).json(err.message);
-  }
-});
+
 app.get("/internal-mark-calculator", (req, res) => {
   try {
     res.status(200).render("internalC.ejs");
@@ -438,4 +432,29 @@ app.get("/internal-mark-calculator", (req, res) => {
   }
 });
 
+app.get("/settings", isLogin, async (req, res) => {
+  try {
+    const docode = await promisify(jwt.verify)(req.cookies.jwt, "n1a2v3e4e5n6");
+    const isUserFound = await Tour.findOne({ _id: docode.id });
+    res.status(200).render("settings.ejs", { staff: isUserFound });
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+});
+
+app.patch('/api/v1/update/:id',async (req,res)=>{
+  try{
+    
+   
+    let staff = await Tour.findByIdAndUpdate(req.params.id,req.body);
+    
+    return res.status(200).json({
+      status:'ok',
+      message:"Successfully Updated.!"
+    })
+  }
+  catch(err){
+    res.status(500).json(err.message);
+  }
+})
 module.exports = app;

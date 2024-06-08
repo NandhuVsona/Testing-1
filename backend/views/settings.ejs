@@ -240,13 +240,50 @@
         height: 67px;
         gap: 5px;
       }
+      body {
+        position: relative;
+      }
+
+      .msg-container {
+        width: 100%;
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        bottom: 50px;
+        padding: 10px;
+        gap: 10px;
+        left: 0;
+        animation: msg 1s ease;
+        overflow: hidden;
+      }
+      .msg-container .msg-body {
+        background-color: aqua;
+        display: inline-block;
+        padding: 15px 20px;
+        border-radius: 10px;
+      }
+      .msg-container i {
+        font-size: 25px;
+      }
+      @keyframes msg {
+        0% {
+          opacity: 0;
+          transform: translateY(100px);
+        }
+      }
+      .msg-container.hide {
+        display: none;
+      }
     </style>
   </head>
   <body>
     <header>
       <div class="head-body">
         <div class="profile">
-          <img src="/public/gear.png" alt="" />
+          <img src="/gear.png" alt="" />
         </div>
         <h2>Settings</h2>
       </div>
@@ -258,12 +295,14 @@
             <label for="name">Enter your name</label>
             <div class="icons-input">
               <i class="fa-solid fa-user"></i>
-              <input type="text" id="name" value="Simon Y" />
+              <input type="text" id="name" value="<%=staff.name%>" />
             </div>
           </div>
           <div class="btns">
             <button class="discard">Discard</button>
-            <button>Save</button>
+            <button class="save-name-btn" data-staff-Id="<%=staff._id%>">
+              Save
+            </button>
           </div>
         </div>
       </div>
@@ -321,7 +360,7 @@
         <a id="inputbox">
           <i class="fa-solid fa-user-pen"></i>
           <section>
-            <p>Simon Y</p>
+            <p class="staff-name"><%=staff.name%></p>
             <small>Tap to edit your name.</small>
           </section>
 
@@ -409,7 +448,14 @@
         </a>
       </main>
     </div>
+    <div class="msg-container hide">
+      <div class="msg-body">
+        <i class="fa-regular fa-circle-check"></i>
+        <b class="msg-box">Successfully Updated.!</b>
+      </div>
+    </div>
     <script>
+      const msgContainer = document.querySelector(".msg-container");
       let editName = document.getElementById("inputbox");
       let changePassword = document.getElementById("change-password");
       let wappNumber = document.getElementById("wapp-number");
@@ -419,6 +465,7 @@
       let wappbox = document.querySelector(".input-box-wapp");
       let phonebox = document.querySelector(".input-box-phone");
       let discard = document.querySelectorAll(".discard");
+      const nameSaveBtn = document.querySelector(".save-name-btn");
       editName.addEventListener("click", () => {
         inputbox.classList.add("show");
         let name = document.querySelector("#name");
@@ -443,6 +490,41 @@
             [index].classList.remove("show");
         });
       });
+
+      nameSaveBtn.addEventListener("click", () => updateName());
+      async function updateName() {
+        const name = document.querySelector("#name").value;
+        const data = { name };
+        let id = nameSaveBtn.dataset.staffId;
+        let req = await fetch(`/api/v1/update/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((res) => {
+            nameSaveBtn.parentElement.parentElement.parentElement.classList.remove(
+              "show"
+            );
+            document.querySelector(".staff-name").innerHTML = name;
+            return res.json();
+          })
+          .then((res) => {
+            document.querySelector(".msg-box").innerHTML = res.message;
+            msgContainer.classList.remove("hide");
+            hideMsg();
+          })
+          .catch((err) => {
+            document.querySelector(".msg-box").innerHTML = err.message;
+            msgContainer.classList.remove("hide");
+            hideMsg();
+          });
+      }
+
+      function hideMsg() {
+        setTimeout(() => {
+          msgContainer.classList.add("hide");
+        }, 3000);
+      }
     </script>
   </body>
 </html>
