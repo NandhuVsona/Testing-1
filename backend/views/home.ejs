@@ -288,17 +288,19 @@
         logoPage.classList.add("visited");
         document.querySelector(".container").classList.remove("hide");
       }
-
-      async function visit(){
-        shareData = {
-          title : 'Check out this Website.!',
-          text : 'I found this useful',
-          ulr : 'https://staffs-status-7rwi.onrender.com'
-        }
-        try{
-          if(navigator.share){
-            await navigator.share(shareData)
+      async function visit() {
+        const shareData = {
+          title: "Check out this Website!", 
+          text: "I found this website useful and wanted to share it with you.", 
+          url: "https://staffs-status-7rwi.onrender.com"
+        };
+        try {
+          if (navigator.share) {
+            await navigator.share(shareData);
+            alert("Thanks for sharing.!");
           }
+        } catch (err) {
+          console.log(err);
         }
       }
     </script>
