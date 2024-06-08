@@ -19,61 +19,61 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="home.css" />
-    <style>
-      .logo {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #ffffff;
-        z-index: 10;
-      }
-      .logo-body {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-      .logo-body img {
-        width: 150px;
-        height: 150px;
-        transition: all 0.3s ease;
-        animation: logoanimation 1s ease;
-      }
-      .logo-body h2 {
-        color: rgb(41, 41, 41);
-        word-spacing: 5px;
-        animation: title 1s ease;
-      }
-
-      @keyframes logoanimation {
-        0% {
-          transform: scale(0) rotate(30deg);
-        }
-      }
-      @keyframes title {
-        0% {
-          opacity: 0;
-          transform: translateY(150px);
-        }
-      }
-      .logo.visited {
-        display: none;
-      }
-      .container {
-        animation: opacity 1s ease;
-      }
-      @keyframes opacity {
-        0% {
-          opacity: 0;
-        }
-      }
-    </style>
   </head>
-  <style></style>
+  <style>
+    .logo {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #ffffff;
+      z-index: 10;
+    }
+    .logo-body {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .logo-body img {
+      width: 150px;
+      height: 150px;
+      transition: all 0.3s ease;
+      animation: logoanimation 1s ease;
+    }
+    .logo-body h2 {
+      color: rgb(41, 41, 41);
+      word-spacing: 5px;
+      animation: title 1s ease;
+    }
+
+    @keyframes logoanimation {
+      0% {
+        transform: scale(0) rotate(30deg);
+      }
+    }
+    @keyframes title {
+      0% {
+        opacity: 0;
+        transform: translateY(150px);
+      }
+    }
+    .logo.visited {
+      display: none;
+    }
+    .container {
+      animation: opacity 1s ease;
+    }
+    @keyframes opacity {
+      0% {
+        opacity: 0;
+      }
+    }
+  </style>
+
   <body>
     <div class="logo">
       <div class="logo-body">
@@ -290,9 +290,9 @@
       }
       async function visit() {
         const shareData = {
-          title: "Check out this Website!", 
-          text: "I found this website useful and wanted to share it with you.", 
-          url: "https://staffs-status-7rwi.onrender.com"
+          title: "Check out this Website!",
+          text: "I found this website useful and wanted to share it with you.",
+          url: "https://staffs-status-7rwi.onrender.com",
         };
         try {
           if (navigator.share) {
