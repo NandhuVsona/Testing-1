@@ -563,12 +563,12 @@
       });
       locationSaveBtn.addEventListener("click", () => {
         const locat = document.querySelector("#locationbox").value;
-        const data = {locat}
+        const data = {location:locat}
         update(data,locat, locationSaveBtn);
       });
       desigationSaveBtn.addEventListener("click", () => {
         const desigation = document.querySelector("#desigation").value;
-        const data = {desigation}
+        const data = {position:desigation}
         update(data,desigation, desigationSaveBtn);
       });
 
