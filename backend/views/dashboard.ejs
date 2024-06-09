@@ -36,13 +36,13 @@
         flex-direction: column;
       }
       .first-section {
-        width: 400px;
-        height: 400px;
+        width: 420px;
+        height: 420px;
         position: relative;
       }
       .second-section {
         padding: 10px;
-        width: 350px;
+        width:400px;
 
         height: 300px;
         overflow-x: scroll !important;
@@ -50,6 +50,11 @@
 
       .ob {
         width: 500px;
+        height: 100%;
+      }
+      #today-presented{
+        height: 100%;
+        width: 100%;
       }
       .inner-text {
         position: absolute;
@@ -342,12 +347,12 @@
       setInterval(() => {
         if (i <= totalStaffs) {
           count.innerHTML = i;
-          i++;
+          i=i+1;
         } else {
           i = totalStaffs;
           clearInterval();
         }
-      }, 50);
+      }, 20);
 
       function loadAbsentdata(data) {
         let container = document.querySelector(".facultys__list");
