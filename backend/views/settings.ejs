@@ -739,9 +739,9 @@
       phoneNoSaveBtn.addEventListener("click", () => {
         const phoneNumber = document.getElementById("phone").value;
         const data = {
-          number: { phoneNumber },
+          number:{phoneNumber}
         };
-        update(data, phoneNumber, phoneNoSaveBtn, pNoLabel);
+        update(data, phoneNumber, phoneNoSaveBtn,pNoLabel);
       });
       wappNoSaveBtn.addEventListener("click", () => {
         const wappNumber = document.getElementById("wapp").value;
