@@ -114,7 +114,6 @@
         align-items: center;
         justify-content: space-evenly;
         flex-direction: column;
-      
       }
       .gender-box img {
         width: 100px;
@@ -168,7 +167,6 @@
         width: 100%;
         align-items: center;
         justify-content: space-around;
-       
       }
 
       .shake {
@@ -476,21 +474,18 @@
       }
       .form-group {
         width: 100%;
-       
       }
       .box-body {
         background-color: cornflowerblue;
         width: 100%;
       }
-      .gender{
+      .gender {
         gap: 10px !important;
-       
       }
-      .box-body{
+      .box-body {
         gap: 10px;
         width: 100%;
       }
-     
     </style>
   </head>
   <body>
@@ -625,7 +620,7 @@
           </div>
         </div>
       </div>
-      <div class="input-box-gender show box-container">
+      <div class="input-box-gender box-container">
         <div class="box-body">
           <div class="form-group">
             <input
@@ -651,7 +646,7 @@
           </div>
           <div class="btns">
             <button class="discard">Discard</button>
-            <button class="save-dept-btn" data-staff-Id="<%=staff._id%>">
+            <button class="save-gender-btn" data-staff-Id="<%=staff._id%>">
               Save
             </button>
           </div>
@@ -699,7 +694,7 @@
           <i class="fa-solid fa-people-group"></i>
           <section>
             <p>Gender</p>
-            <small>Tap to correct the gender</small>
+            <small class="gender-small-label">Tap to correct the gender</small>
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -789,6 +784,7 @@
       let desigationBox = document.querySelector(".input-box-desigation");
       let deptBox = document.querySelector(".input-box-dept");
       let locationLabel = document.querySelector("#location");
+
       let position = document.getElementById("position");
       let genderLabel = document.getElementById("gender-label");
       let inputbox = document.querySelector(".input-box-name");
@@ -800,6 +796,7 @@
       const nameSaveBtn = document.querySelector(".save-name-btn");
       const locationSaveBtn = document.querySelector(".save-location-btn");
       const deptSaveBtn = document.querySelector(".save-dept-btn");
+      const genderSaveBtn = document.querySelector(".save-gender-btn");
       const desigationSaveBtn = document.querySelector(".save-desigation-btn");
       const deleteLabel = document.querySelector("#delete");
       const dept = document.querySelector("#dept");
@@ -903,6 +900,13 @@
         const data = { department };
         let field = document.querySelector(".dept-label");
         update(data, department, deptSaveBtn, field);
+      });
+
+      genderSaveBtn.addEventListener("click", () => {
+        let gender = document.querySelector("#gender").value;
+        const data = { gender };
+        let field = document.querySelector(".gender-small-label");
+        update(data, gender, genderSaveBtn, field);
       });
 
       async function update(data, value, saveBtn, field = "") {
