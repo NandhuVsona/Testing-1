@@ -665,6 +665,7 @@
       const desigationSaveBtn = document.querySelector(".save-desigation-btn");
       const deleteLabel = document.querySelector("#delete");
       const dept = document.querySelector("#dept");
+      const deptBoxValue = document.getElementById("deptbox");
       const cancelBtn = document.querySelector(".cancel-delete");
       const okayDelBtn = document.querySelector(".okay-delete");
       const deleteMessage = document.querySelector(".delete-conformation");
@@ -691,6 +692,8 @@
       });
       dept.addEventListener("click", () => {
         deptBox.classList.add("show");
+        deptBoxValue.setSelectionRange(deptBoxValue.value.length,deptBoxValue.value.length)
+        deptBoxValue.focus()
       });
       locationLabel.addEventListener("click", () => {
         locationBox.classList.add("show");
