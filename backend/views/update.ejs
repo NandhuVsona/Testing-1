@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <style>
-    *{
+    * {
       user-select: none;
     }
     .gender-box {
@@ -84,8 +84,32 @@
       align-items: center;
       justify-content: space-around;
     }
-    #update{
+    #update {
       color: #8c28d4;
+    }
+    .container header .progress .progress-steps {
+      background-color: rgb(195, 195, 195);
+      font-weight: 600;
+      border-radius: 50%;
+      line-height: 40px;
+      width: 40px;
+      height: 40px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+    .progress {
+      padding: 5px;
+    }
+    .container header .progress::before {
+      content: "";
+      z-index: -1;
+      left: 5px;
+      position: absolute;
+      width: 96%;
+      height: 5px;
+      background-color: rgb(195, 195, 195);
     }
   </style>
   <body>
@@ -100,86 +124,11 @@
           <div class="progress-steps">4</div>
           <div class="progress-steps">5</div>
           <div class="progress-steps">6</div>
-          <div class="progress-steps">7</div>
-          <div class="progress-steps">8</div>
-          <div class="progress-steps">9</div>
         </div>
       </header>
 
-      <form
-        action="/optimized/<%=staff.id%>"
-        method="POST"
-      >
-        <div class="form-page active">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value="<%=staff.name%>"
-              placeholder="Enter Your Name"
-            />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-
-            <input
-              type="email"
-              name="email"
-              disabled
-              id="email"
-              value="<%=staff.email%>"
-              placeholder="Enter Your Email"
-            />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input  value="********" disabled name="password" id="password" />
-          </div>
-          <button class="nextbtn">Next</button>
-        </div>
-
-        <div class="form-page">
-          <div class="form-group">
-            <label for="department">Department</label>
-            <input
-              type="text"
-              name="department"
-              id="department"
-              value="<%=staff.department%>"
-              placeholder="Enter The Department"
-            />
-          </div>
-          <div class="form-group">
-            <label for="position">Position</label>
-            <input
-              type="text"
-              name="position"
-              id="position"
-              value="<%=staff.position%>"
-              placeholder="like assistant or associative prof"
-            />
-          </div>
-          <div class="form-group">
-            <label for="location"
-              ><i class="fa-solid fa-location-dot"></i> Location</label
-            >
-            <input
-              type="text"
-              name="location"
-              value="<%=staff.location%>"
-              id="location"
-              placeholder="like ECE dept 2nd floor 931..."
-            />
-          </div>
-          <div class="btns">
-            <button class="pretbtn">previous</button>
-            <button class="nextbtn">NEXT</button>
-          </div>
-        </div>
-
-        <div class="form-page time-table">
+      <form action="/optimized/<%=staff.id%>" method="POST">
+        <div class="form-page active time-table">
           <header>
             <h2>Monday</h2>
           </header>
@@ -265,10 +214,7 @@
             </div>
           </div>
 
-          <div class="btns">
-            <button class="pretbtn">previous</button>
-            <button class="nextbtn">NEXT</button>
-          </div>
+          <button class="nextbtn">NEXT</button>
         </div>
         <div class="form-page time-table">
           <header>
@@ -721,47 +667,47 @@
           </div>
           <div class="btns">
             <button class="pretbtn">previous</button>
-            <button class="nextbtn">NEXT</button>
-          </div>
-        </div>
-
-        <div class="form-page">
-          <div class="form-group">
-            <input
-              type="text"
-              value="female"
-              name="gender"
-              id="gender"
-              hidden
-            />
-            <div class="gender-box">
-              <div class="gender">
-                <div class="male">
-                  <img class="img" src="male.png" alt="Male" />
-                  <p>Male</p>
-                </div>
-                <div class="switch"></div>
-                <div class="female">
-                  <img src="female.png" alt="Female" />
-                  <p>Female</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="form-group">
-            <input type="file" name="profile" id="profile" />
-            <label for="profile">Upload Image</label>
-          </div> -->
-          <div class="btns">
-            <button class="pretbtn">previous</button>
             <button id="update" type="submit" class="submit">Update</button>
           </div>
         </div>
       </form>
     </div>
-    
 
-    <script src="script.js"></script>
-    <script src="crud.js"></script>
+    <script>
+      let nextBtn = document.querySelectorAll(".nextbtn");
+      let prevBtn = document.querySelectorAll(".pretbtn");
+      let formPage = document.querySelectorAll(".form-page");
+      let progress_line = document.querySelector(".progress-line");
+      let progress_Step = document.querySelectorAll(".progress-steps");
+      let currentPage = 0;
+
+      nextBtn.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          currentPage++;
+          progress_Step[currentPage].classList.add("active");
+
+          updatePage();
+        });
+      });
+
+      prevBtn.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          progress_Step[currentPage].classList.remove("active");
+          currentPage--;
+
+          updatePage();
+        });
+      });
+
+      function updatePage() {
+        formPage.forEach((form) => {
+          form.classList.remove("active");
+        });
+        formPage[currentPage].classList.add("active");
+        progress_line.style.width = currentPage * 65 + "px";
+      }
+    </script>
   </body>
 </html>

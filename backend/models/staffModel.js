@@ -5,7 +5,7 @@ let staffShceme = new mongooes.Schema({
     type: String,
     required: [true, "Name required. Please provide."],
     trim: true,
-    minlength:4,
+    minlength: 4,
   },
   email: {
     type: String,
@@ -16,7 +16,6 @@ let staffShceme = new mongooes.Schema({
   password: {
     type: String,
     required: [true, "Password required. Please provide."],
-    select:false,
   },
   department: {
     type: String,

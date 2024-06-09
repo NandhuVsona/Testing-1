@@ -397,11 +397,6 @@ app.post("/optimized/:id", isLogin, async (req, res) => {
     });
 
     data = {
-      name: req.body.name,
-      department: req.body.department,
-      position: req.body.position,
-      location: req.body.location,
-      gender: req.body.gender,
       monday: schedule.monSchedule,
       tuesday: schedule.tueSchedule,
       wednesday: schedule.wedSchedule,
