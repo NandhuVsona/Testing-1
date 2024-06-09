@@ -406,7 +406,7 @@ app.post("/optimized/:id", isLogin, async (req, res) => {
     };
     let updateStaff = await Tour.findByIdAndUpdate(req.params.id, data);
     let updatedStaff = await Tour.findById(req.params.id, { password: 0 });
-    res.status(200).redirect(`/account/${req.params.id}`)
+    res.status(200).redirect('/myaccount')
   } catch (err) {
     res.status(500).json(err.message);
   }
