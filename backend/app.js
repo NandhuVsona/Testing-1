@@ -209,7 +209,6 @@ app.get("/api/v1/overview/:id", async (req, res) => {
   const staff = await Tour.findOne({ _id: id });
   res.status(200).json({
     status: "success",
-    result: staff.length,
     staff,
   });
 });

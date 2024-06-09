@@ -439,12 +439,12 @@
             <label for="wapp">Enter your whatsapp number</label>
             <div class="icons-input">
               <i class="fa-brands fa-whatsapp"></i>
-              <input type="tell" id="wapp" value="+91" />
+              <input type="tell" id="wapp" />
             </div>
           </div>
           <div class="btns">
             <button class="discard">Discard</button>
-            <button>Save</button>
+            <button class="wapp-no-save-btn" data-staff-Id="<%=staff._id%>">Save</button>
           </div>
         </div>
       </div>
@@ -454,12 +454,12 @@
             <label for="phone">Enter your Phone number</label>
             <div class="icons-input">
               <i class="fa-solid fa-phone-volume"></i>
-              <input type="tell" id="phone" value="+91" />
+              <input type="tell" id="phone" />
             </div>
           </div>
           <div class="btns">
             <button class="discard">Discard</button>
-            <button>Save</button>
+            <button class="phone-no-save-btn" data-staff-Id="<%=staff._id%>">Save</button>
           </div>
         </div>
       </div>
@@ -637,6 +637,8 @@
       const cancelBtn = document.querySelector(".cancel-delete");
       const okayDelBtn = document.querySelector(".okay-delete");
       const deleteMessage = document.querySelector(".delete-conformation");
+      const phoneNoSaveBtn = document.querySelector(".phone-no-save-btn");
+      const wappNoSaveBtn = document.querySelector(".wapp-no-save-btn");
       const body = document.querySelector("body");
       editName.addEventListener("click", () => {
         inputbox.classList.add("show");
@@ -698,7 +700,27 @@
         update(data, desigation, desigationSaveBtn);
       });
 
+      phoneNoSaveBtn.addEventListener("click", () => {
+        const phoneNumber = document.getElementById("phone").value;
+        const data = {
+          number: {
+            phoneNumber: phoneNumber,
+          },
+        };
+        update(data, phoneNumber, phoneNoSaveBtn);
+      });
+      wappNoSaveBtn.addEventListener("click", () => {
+        const wappNumber = document.getElementById("wapp").value;
+        const data = {
+          number: {
+            wappNumber: wappNumber,
+          },
+        };
+        update(data, wappNumber, wappNoSaveBtn);
+      });
+
       async function update(data, value, saveBtn, field = "") {
+        console.log(data)
         let id = saveBtn.dataset.staffId;
         let req = await fetch(`/api/v1/update/${id}`, {
           method: "PATCH",
@@ -749,11 +771,11 @@
           headers: { "Content-Type": "application/json" },
         })
           .then((res) => {
-            window.location.reload() 
+            window.location.reload();
             return res.json();
           })
           .catch((err) => {
-           return alert(err.message)
+            return alert(err.message);
           });
       }
     </script>
