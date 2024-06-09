@@ -707,11 +707,11 @@
       });
 
       phoneNoSaveBtn.addEventListener("click", () => {
-        const phoneNumber = document.getElementById("phone").value;
+        const phNo = document.getElementById("phone").value;
         const data = {
-          number:{phoneNumber}
+          number:{phoneNumber :phNo}
         };
-        update(data, phoneNumber, phoneNoSaveBtn,pNoLabel);
+        update(data, phNo, phoneNoSaveBtn,pNoLabel);
       });
       wappNoSaveBtn.addEventListener("click", () => {
         const wappNumber = document.getElementById("wapp").value;
