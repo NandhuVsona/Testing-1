@@ -413,7 +413,8 @@ app.get("/settings", isLogin, async (req, res) => {
 
 app.patch("/api/v1/update/:id", isLogin, async (req, res) => {
   try {
-    let staff = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+    const data = req.body
+    const staff = await Tour.findByIdAndUpdate(req.params.id, data, {
       new: true,
       runValidators: true,
     });
@@ -426,6 +427,7 @@ app.patch("/api/v1/update/:id", isLogin, async (req, res) => {
     res.status(500).json(err.message);
   }
 });
+
 app.delete("/account/:id", isLogin, async (req, res) => {
   const query = req.params.id;
   try {

@@ -93,14 +93,14 @@ let staffShceme = new mongooes.Schema({
   startDates: [Date],
   number: {
     whatsappNumber: {
-      type: Number,
-      default: "0123456789",
+      type: String,
+      default: "Whatsapp number is not yet added.!",
       minlength: [10, "Number must be 10 digits"],
       maxlength: [10, "Number must be 10 digits"],
     },
     phoneNumber: {
-      type: Number,
-      default: "0123456789",
+      type: String,
+      default: "Phone numer is not yet added.!",
       minlength: [10, "Number must be 10 digits"],
       maxlength: [10, "Number must be 10 digits"],
     },

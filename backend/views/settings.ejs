@@ -444,7 +444,9 @@
           </div>
           <div class="btns">
             <button class="discard">Discard</button>
-            <button class="wapp-no-save-btn" data-staff-Id="<%=staff._id%>">Save</button>
+            <button class="wapp-no-save-btn" data-staff-Id="<%=staff._id%>">
+              Save
+            </button>
           </div>
         </div>
       </div>
@@ -459,7 +461,9 @@
           </div>
           <div class="btns">
             <button class="discard">Discard</button>
-            <button class="phone-no-save-btn" data-staff-Id="<%=staff._id%>">Save</button>
+            <button class="phone-no-save-btn" data-staff-Id="<%=staff._id%>">
+              Save
+            </button>
           </div>
         </div>
       </div>
@@ -547,7 +551,7 @@
           <i class="fa-brands fa-whatsapp"></i>
           <section>
             <p>Whatapp Number</p>
-            <small>Tap to add your whatsapp Number</small>
+            <small class="wapp-number-label"><%=staff.number.whatsappNumber%></small>
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -555,7 +559,7 @@
           <i class="fa-solid fa-phone-volume"></i>
           <section>
             <p>Phone Number</p>
-            <small>Tap to add your phone Number</small>
+            <small class="phone-number-label"><%=staff.number.phoneNumber%></small>
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -587,7 +591,7 @@
           <i class="fa-solid fa-shield-halved"></i>
           <section>
             <p>Terms & conditions</p>
-            <small>Tap to add your phone Number</small>
+            <small>Tap to read the terms & conditions</small>
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -639,6 +643,8 @@
       const deleteMessage = document.querySelector(".delete-conformation");
       const phoneNoSaveBtn = document.querySelector(".phone-no-save-btn");
       const wappNoSaveBtn = document.querySelector(".wapp-no-save-btn");
+      const pNoLabel = document.querySelector(".phone-number-label");
+      const wappNoLabel = document.querySelector(".wapp-number-label");
       const body = document.querySelector("body");
       editName.addEventListener("click", () => {
         inputbox.classList.add("show");
@@ -703,24 +709,20 @@
       phoneNoSaveBtn.addEventListener("click", () => {
         const phoneNumber = document.getElementById("phone").value;
         const data = {
-          number: {
-            phoneNumber: phoneNumber,
-          },
+          number:{phoneNumber}
         };
-        update(data, phoneNumber, phoneNoSaveBtn);
+        update(data, phoneNumber, phoneNoSaveBtn,pNoLabel);
       });
       wappNoSaveBtn.addEventListener("click", () => {
         const wappNumber = document.getElementById("wapp").value;
         const data = {
-          number: {
-            wappNumber: wappNumber,
-          },
+          number:{whatsappNumber: wappNumber,}
         };
-        update(data, wappNumber, wappNoSaveBtn);
+        update(data, wappNumber, wappNoSaveBtn,wappNoLabel);
       });
 
       async function update(data, value, saveBtn, field = "") {
-        console.log(data)
+        console.log(data);
         let id = saveBtn.dataset.staffId;
         let req = await fetch(`/api/v1/update/${id}`, {
           method: "PATCH",
@@ -747,13 +749,12 @@
             hideMsg();
           });
       }
-
+    
       function hideMsg() {
         setTimeout(() => {
           msgContainer.classList.add("hide");
         }, 3000);
       }
-
       deleteLabel.addEventListener("click", () => {
         deleteMessage.classList.add("show");
         body.classList.add("reduceHeight");
