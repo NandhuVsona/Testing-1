@@ -156,7 +156,7 @@
         border: 5px solid rgb(255, 137, 2);
       }
       .female img {
-        border: 5px solid  rgb(239, 0, 247);
+        border: 5px solid rgb(239, 0, 247);
         transition: all 0.3s ease;
       }
       .female img.round {
@@ -703,7 +703,7 @@
           <section>
             <p>Whatapp Number</p>
             <small class="wapp-number-label"
-              ><%=staff.number.whatsappNumber%></small
+              ><%=staff.whatsappNumber%></small
             >
           </section>
           <i class="fa-solid fa-angle-right"></i>
@@ -713,7 +713,7 @@
           <section>
             <p>Phone Number</p>
             <small class="phone-number-label"
-              ><%=staff.number.phoneNumber%></small
+              ><%=staff.phoneNumber%></small
             >
           </section>
           <i class="fa-solid fa-angle-right"></i>
@@ -872,28 +872,24 @@
       locationSaveBtn.addEventListener("click", () => {
         const locat = document.querySelector("#locationbox").value;
         const data = { location: locat };
-        let field = document.querySelector('.location-small-label')
-        update(data, locat, locationSaveBtn,field);
+        let field = document.querySelector(".location-small-label");
+        update(data, locat, locationSaveBtn, field);
       });
       desigationSaveBtn.addEventListener("click", () => {
         const desigation = document.querySelector("#desigation").value;
         const data = { position: desigation };
-        const field = document.querySelector('.desigation-small-lable')
+        const field = document.querySelector(".desigation-small-lable");
         update(data, desigation, desigationSaveBtn);
       });
 
       phoneNoSaveBtn.addEventListener("click", () => {
         const phoneNumber = document.getElementById("phone").value;
-        const data = {
-          number: { phoneNumber },
-        };
+        const data = { phoneNumber };
         update(data, phoneNumber, phoneNoSaveBtn, pNoLabel);
       });
       wappNoSaveBtn.addEventListener("click", () => {
         const wappNumber = document.getElementById("wapp").value;
-        const data = {
-          number: { whatsappNumber: wappNumber },
-        };
+        const data = { whatsappNumber: wappNumber };
         update(data, wappNumber, wappNoSaveBtn, wappNoLabel);
       });
 
