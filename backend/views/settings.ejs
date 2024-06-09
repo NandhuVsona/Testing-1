@@ -511,7 +511,9 @@
           </div>
           <div class="conf-btns">
             <button class="cancel-delete">Cancel</button>
-            <button class="okay-delete">Okay</button>
+            <button data-staff-Id="<%=staff._id%>" class="okay-delete">
+              Okay
+            </button>
           </div>
         </div>
       </div>
@@ -633,6 +635,7 @@
       const desigationSaveBtn = document.querySelector(".save-desigation-btn");
       const deleteLabel = document.querySelector("#delete");
       const cancelBtn = document.querySelector(".cancel-delete");
+      const okayDelBtn = document.querySelector(".okay-delete");
       const deleteMessage = document.querySelector(".delete-conformation");
       const body = document.querySelector("body");
       editName.addEventListener("click", () => {
@@ -737,6 +740,22 @@
         deleteMessage.classList.remove("show");
         body.classList.remove("reduceHeight");
       });
+
+      okayDelBtn.addEventListener("click", deleteAccount);
+      async function deleteAccount() {
+        let staffId = okayDelBtn.dataset.staffId;
+        let req = await fetch(`/account/${staffId}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        })
+          .then((res) => {
+            window.location.reload() 
+            return res.json();
+          })
+          .catch((err) => {
+           return alert(err.message)
+          });
+      }
     </script>
   </body>
 </html>

@@ -406,7 +406,7 @@ app.post("/optimized/:id", isLogin, async (req, res) => {
     };
     let updateStaff = await Tour.findByIdAndUpdate(req.params.id, data);
     let updatedStaff = await Tour.findById(req.params.id, { password: 0 });
-    res.status(200).redirect('/myaccount')
+    res.status(200).redirect("/myaccount");
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -420,7 +420,6 @@ app.get("/internal-mark-calculator", (req, res) => {
   }
 });
 
-
 app.get("/settings", isLogin, async (req, res) => {
   try {
     const docode = await promisify(jwt.verify)(req.cookies.jwt, "n1a2v3e4e5n6");
@@ -431,7 +430,7 @@ app.get("/settings", isLogin, async (req, res) => {
   }
 });
 
-app.patch("/api/v1/update/:id", async (req, res) => {
+app.patch("/api/v1/update/:id", isLogin, async (req, res) => {
   try {
     let staff = await Tour.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -444,6 +443,28 @@ app.patch("/api/v1/update/:id", async (req, res) => {
     });
   } catch (err) {
     res.status(500).json(err.message);
+  }
+});
+app.delete("/account/:id", isLogin, async (req, res) => {
+  const query = req.params.id;
+  try {
+    // Assuming Tour is your model and you're trying to delete a document by ID
+    let { image } = await Tour.findOne({ _id: query });
+    if (image) {
+      fs.unlink(
+        path.join(__dirname, "..", "public", "uploads", image),
+        async (err) => {
+          let staff = await Tour.deleteOne({ _id: query });
+          res.status(200).json({
+            status: "ok",
+            message: "Successfuly Deleted.!",
+          });
+        }
+      );
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
   }
 });
 module.exports = app;
