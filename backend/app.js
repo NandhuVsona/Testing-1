@@ -405,9 +405,8 @@ app.post("/optimized/:id", isLogin, async (req, res) => {
       saturday: schedule.satSchedule,
     };
     let updateStaff = await Tour.findByIdAndUpdate(req.params.id, data);
-    let updatedStaff = await Tour.findById(req.params.id,{password:0});
-    console.log(updatedStaff)
-    res.status(200).render("account.ejs", { staff: updatedStaff });
+    let updatedStaff = await Tour.findById(req.params.id, { password: 0 });
+    res.status(200).redirect(`/account/${req.params.id}`)
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -421,13 +420,6 @@ app.get("/internal-mark-calculator", (req, res) => {
   }
 });
 
-app.get("/internal-mark-calculator", (req, res) => {
-  try {
-    res.status(200).render("internalC.ejs");
-  } catch (err) {
-    res.status(500).json(err.message);
-  }
-});
 
 app.get("/settings", isLogin, async (req, res) => {
   try {
