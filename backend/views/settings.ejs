@@ -702,9 +702,7 @@
           <i class="fa-brands fa-whatsapp"></i>
           <section>
             <p>Whatapp Number</p>
-            <small class="wapp-number-label"
-              ><%=staff.whatsappNumber%></small
-            >
+            <small class="wapp-number-label"><%=staff.whatsappNumber%></small>
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -712,9 +710,7 @@
           <i class="fa-solid fa-phone-volume"></i>
           <section>
             <p>Phone Number</p>
-            <small class="phone-number-label"
-              ><%=staff.phoneNumber%></small
-            >
+            <small class="phone-number-label"><%=staff.phoneNumber%></small>
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -758,7 +754,7 @@
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
-        <a href="/logout">
+        <a id="logout">
           <i class="fa-solid fa-right-from-bracket"></i>
           <section>
             <p>Logout</p>
@@ -775,6 +771,7 @@
       </div>
     </div>
     <script>
+      let logoutLabel = document.getElementById("logout");
       let msgContainer = document.querySelector(".msg-container");
       let editName = document.getElementById("inputbox");
       let changePassword = document.getElementById("change-password");
@@ -963,6 +960,27 @@
           })
           .catch((err) => {
             return alert(err.message);
+          });
+      }
+
+      //-----------Logout--------//
+      logoutLabel.addEventListener("click", logout);
+      async function logout() {
+        let req = await fetch("/logout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            if (res.status === "success") {
+              window.location.reload();
+              window.location.href = "/";
+            }
+          })
+          .catch((err) => {
+            document.querySelector(".msg-box").innerHTML = res.message;
+            msgContainer.classList.remove("hide");
+            hideMsg();
           });
       }
       //-----------Gender------//

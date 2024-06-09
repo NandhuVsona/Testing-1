@@ -213,12 +213,15 @@ app.get("/api/v1/overview/:id", async (req, res) => {
   });
 });
 
-app.get("/logout", async (req, res) => {
+app.post("/logout", async (req, res) => {
   res.cookie("jwt", "Logout", {
     expires: new Date(Date.now() + 5 * 1000),
     httpOnly: true,
   });
-  res.status(200).render("signin.ejs");
+  res.status(200).json({
+    status:'success',
+    message:'Successfully Logout.!'
+  })
 });
 
 // app.get("/database/reset", async (req, res) => {
