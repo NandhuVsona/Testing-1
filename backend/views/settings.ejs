@@ -108,6 +108,7 @@
       .input-box-password,
       .input-box-wapp,
       .input-box-phone,
+      .input-box-dept,
       .input-box-location,
       .input-box-desigation {
         width: 100%;
@@ -137,6 +138,7 @@
       .input-box-desigation.show .box-body,
       .input-box-password.show .box-body,
       .input-box-wapp.show .box-body,
+      .input-box-dept.show .box-body,
       .input-box-phone.show .box-body {
         animation: down 0.5s ease;
       }
@@ -182,6 +184,7 @@
 
       .input-box-name.show,
       .input-box-password.show,
+      .input-box-dept.show,
       .input-box-wapp.show,
       .input-box-phone.show,
       .input-box-location.show,
@@ -501,6 +504,23 @@
           </div>
         </div>
       </div>
+      <div class="input-box-dept box-container">
+        <div class="box-body">
+          <div class="input">
+            <label for="deptbox">Enter your department</label>
+            <div class="icons-input">
+              <i class="fa-solid fa-location-crosshairs"></i>
+              <input type="text" id="deptbox" value="<%=staff.department%>" />
+            </div>
+          </div>
+          <div class="btns">
+            <button class="discard">Discard</button>
+            <button class="save-dept-btn" data-staff-Id="<%=staff._id%>">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
       <div class="delete-conformation">
         <div class="delete-body">
           <div class="top">
@@ -551,7 +571,9 @@
           <i class="fa-brands fa-whatsapp"></i>
           <section>
             <p>Whatapp Number</p>
-            <small class="wapp-number-label"><%=staff.number.whatsappNumber%></small>
+            <small class="wapp-number-label"
+              ><%=staff.number.whatsappNumber%></small
+            >
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -559,7 +581,9 @@
           <i class="fa-solid fa-phone-volume"></i>
           <section>
             <p>Phone Number</p>
-            <small class="phone-number-label"><%=staff.number.phoneNumber%></small>
+            <small class="phone-number-label"
+              ><%=staff.number.phoneNumber%></small
+            >
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -579,11 +603,11 @@
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
-        <a id="branch">
+        <a id="dept">
           <i class="fa-solid fa-layer-group"></i>
           <section>
             <p>Department</p>
-            <small>Tap to change your Dept</small>
+            <small class="dept-label"><%=staff.department%></small>
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -627,6 +651,7 @@
       let phoneNumber = document.getElementById("phone-number");
       let locationBox = document.querySelector(".input-box-location");
       let desigationBox = document.querySelector(".input-box-desigation");
+      let deptBox = document.querySelector(".input-box-dept");
       let locationLabel = document.querySelector("#location");
       let position = document.querySelector("#position");
       let inputbox = document.querySelector(".input-box-name");
@@ -636,8 +661,10 @@
       let discard = document.querySelectorAll(".discard");
       const nameSaveBtn = document.querySelector(".save-name-btn");
       const locationSaveBtn = document.querySelector(".save-location-btn");
+      const deptSaveBtn = document.querySelector(".save-dept-btn");
       const desigationSaveBtn = document.querySelector(".save-desigation-btn");
       const deleteLabel = document.querySelector("#delete");
+      const dept = document.querySelector("#dept");
       const cancelBtn = document.querySelector(".cancel-delete");
       const okayDelBtn = document.querySelector(".okay-delete");
       const deleteMessage = document.querySelector(".delete-conformation");
@@ -661,6 +688,9 @@
       });
       phoneNumber.addEventListener("click", () => {
         phonebox.classList.add("show");
+      });
+      dept.addEventListener("click", () => {
+        deptBox.classList.add("show");
       });
       locationLabel.addEventListener("click", () => {
         locationBox.classList.add("show");
@@ -709,16 +739,23 @@
       phoneNoSaveBtn.addEventListener("click", () => {
         const phoneNumber = document.getElementById("phone").value;
         const data = {
-          number:{phoneNumber}
+          number: { phoneNumber },
         };
-        update(data, phoneNumber, phoneNoSaveBtn,pNoLabel);
+        update(data, phoneNumber, phoneNoSaveBtn, pNoLabel);
       });
       wappNoSaveBtn.addEventListener("click", () => {
         const wappNumber = document.getElementById("wapp").value;
         const data = {
-          number:{whatsappNumber: wappNumber,}
+          number: { whatsappNumber: wappNumber },
         };
-        update(data, wappNumber, wappNoSaveBtn,wappNoLabel);
+        update(data, wappNumber, wappNoSaveBtn, wappNoLabel);
+      });
+
+      deptSaveBtn.addEventListener("click", () => {
+        const department = document.getElementById("deptbox").value;
+        const data = { department };
+        let field = document.querySelector(".dept-label");
+        update(data, department, deptSaveBtn, field);
       });
 
       async function update(data, value, saveBtn, field = "") {
@@ -749,7 +786,7 @@
             hideMsg();
           });
       }
-    
+
       function hideMsg() {
         setTimeout(() => {
           msgContainer.classList.add("hide");
