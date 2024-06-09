@@ -1,4 +1,5 @@
 const mongooes = require("mongoose");
+const validator = require("validator");
 const type = require("mongoose/lib/schema/operators/type");
 let staffShceme = new mongooes.Schema({
   name: {
@@ -12,6 +13,7 @@ let staffShceme = new mongooes.Schema({
     unique: true,
     required: [true, "Email required. Please provide."],
     lowercase: true,
+    validate: [validator.isEmail, "Please provide a valid email"],
   },
   password: {
     type: String,
@@ -61,6 +63,7 @@ let staffShceme = new mongooes.Schema({
   },
   image: {
     type: String,
+    default: "male.png",
     // required: true,
     // required: [true, "Image required. Please Upload."],
   },
@@ -88,6 +91,20 @@ let staffShceme = new mongooes.Schema({
     default: Date.now(),
   },
   startDates: [Date],
+  number: {
+    whatsappNumber: {
+      type: Number,
+      default: "0123456789",
+      minlength: [10, "Number must be 10 digits"],
+      maxlength: [10, "Number must be 10 digits"],
+    },
+    phoneNumber: {
+      type: Number,
+      default: "0123456789",
+      minlength: [10, "Number must be 10 digits"],
+      maxlength: [10, "Number must be 10 digits"],
+    },
+  },
 });
 
 const Tour = mongooes.model("Staffs", staffShceme);

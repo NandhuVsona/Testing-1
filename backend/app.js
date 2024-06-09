@@ -236,25 +236,7 @@ app.get("/myaccount", isLogin, async (req, res) => {
     res.status(500).json(err.message);
   }
 });
-app.get("/account/:id", isLogin, async (req, res) => {
-  const query = req.params.id;
-  try {
-    // Assuming Tour is your model and you're trying to delete a document by ID
-    let { image } = await Tour.findOne({ _id: query });
-    if (image) {
-      fs.unlink(
-        path.join(__dirname, "..", "public", "uploads", image),
-        async (err) => {
-          let staff = await Tour.deleteOne({ _id: query });
-          res.status(200).redirect("/");
-        }
-      );
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
-});
+
 app.patch("/myaccount/:id", async (req, res) => {
   const id = req.params.id; // Get the id from params
   const newData = req.body.data; // Assuming your data is structured properly in req.body
