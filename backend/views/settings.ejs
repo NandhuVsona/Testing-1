@@ -694,7 +694,7 @@
           <i class="fa-solid fa-people-group"></i>
           <section>
             <p>Gender</p>
-            <small class="gender-small-label">Tap to correct the gender</small>
+            <small class="gender-small-label"><%=staff.gender%></small>
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -722,7 +722,7 @@
           <i class="fa-solid fa-location-crosshairs"></i>
           <section>
             <p>Location</p>
-            <small>Tap to change your location</small>
+            <small class="location-small-label"><%=staff.location%></small>
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -730,7 +730,7 @@
           <i class="fa-solid fa-wand-magic-sparkles"></i>
           <section>
             <p>Desigation</p>
-            <small>Tap to change your desigatiion</small>
+            <small class="desigation-small-lable"><%=staff.position%></small>
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -872,11 +872,13 @@
       locationSaveBtn.addEventListener("click", () => {
         const locat = document.querySelector("#locationbox").value;
         const data = { location: locat };
-        update(data, locat, locationSaveBtn);
+        let field = document.querySelector('.location-small-label')
+        update(data, locat, locationSaveBtn,field);
       });
       desigationSaveBtn.addEventListener("click", () => {
         const desigation = document.querySelector("#desigation").value;
         const data = { position: desigation };
+        const field = document.querySelector('.desigation-small-lable')
         update(data, desigation, desigationSaveBtn);
       });
 
