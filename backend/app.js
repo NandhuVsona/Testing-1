@@ -404,8 +404,9 @@ app.post("/optimized/:id", isLogin, async (req, res) => {
       friday: schedule.friSchedule,
       saturday: schedule.satSchedule,
     };
-    let staff = await Tour.findByIdAndUpdate(req.params.id, data);
-    res.status(200).render("account.ejs", { staff: staff });
+    let updateStaff = await Tour.findByIdAndUpdate(req.params.id, data);
+    let updatedStaff = await Tour.findById(req.params.id);
+    res.status(200).render("account.ejs", { staff: updatedStaff });
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -440,7 +441,8 @@ app.get("/settings", isLogin, async (req, res) => {
 app.patch("/api/v1/update/:id", async (req, res) => {
   try {
     let staff = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,runValidators: true
+      new: true,
+      runValidators: true,
     });
 
     return res.status(200).json({
