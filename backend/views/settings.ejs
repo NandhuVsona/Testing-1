@@ -104,11 +104,96 @@
       a:hover {
         background-color: rgb(240, 240, 240);
       }
+      .gender img {
+        animation: none;
+        filter: none;
+      }
+      .gender-box {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+      
+      }
+      .gender-box img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
+      .gender {
+        text-align: center;
+        width: 100%;
+      }
+      .switch {
+        width: 80px;
+        height: 40px;
+        border-radius: 50px;
+        background-color: rgb(255, 2, 221);
+        position: relative;
+      }
+      .switch::before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+
+        left: 55%;
+        top: 5px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+      .switch.move {
+        background-color: rgb(255, 137, 2);
+      }
+      .switch.move::before {
+        left: 5px;
+      }
+      .male img {
+        transition: all 0.3s ease;
+      }
+      .male img.move {
+        border: 5px solid rgb(255, 137, 2);
+      }
+      .female img {
+        border: 5px solid rgb(255, 2, 221);
+        transition: all 0.3s ease;
+      }
+      .female img.round {
+        border: 0px;
+      }
+      .gender {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+       
+      }
+
+      .shake {
+        transition: all 0.3s ease;
+        animation: shake 0.3s ease;
+      }
+      @keyframes shake {
+        0% {
+          transform: translateX(0px);
+        }
+        50% {
+          transform: translateX(-5px);
+          border: 2px solid red;
+        }
+        100% {
+          transform: translateX(5px);
+          border: 2px solid red;
+        }
+      }
       .input-box-name,
       .input-box-password,
       .input-box-wapp,
       .input-box-phone,
       .input-box-dept,
+      .input-box-gender,
       .input-box-location,
       .input-box-desigation {
         width: 100%;
@@ -139,6 +224,7 @@
       .input-box-password.show .box-body,
       .input-box-wapp.show .box-body,
       .input-box-dept.show .box-body,
+      .input-box-gender.show .box-body,
       .input-box-phone.show .box-body {
         animation: down 0.5s ease;
       }
@@ -188,6 +274,7 @@
       .input-box-wapp.show,
       .input-box-phone.show,
       .input-box-location.show,
+      .input-box-gender.show,
       .input-box-desigation.show {
         display: flex;
       }
@@ -387,6 +474,23 @@
         color: #ffffff;
         background-color: orange;
       }
+      .form-group {
+        width: 100%;
+       
+      }
+      .box-body {
+        background-color: cornflowerblue;
+        width: 100%;
+      }
+      .gender{
+        gap: 10px !important;
+       
+      }
+      .box-body{
+        gap: 10px;
+        width: 100%;
+      }
+     
     </style>
   </head>
   <body>
@@ -521,6 +625,38 @@
           </div>
         </div>
       </div>
+      <div class="input-box-gender show box-container">
+        <div class="box-body">
+          <div class="form-group">
+            <input
+              type="text"
+              value="female"
+              name="gender"
+              id="gender"
+              hidden
+            />
+            <div class="gender-box">
+              <div class="gender">
+                <div class="male">
+                  <img class="img" src="male.png" alt="Male" />
+                  <p>Male</p>
+                </div>
+                <div class="switch"></div>
+                <div class="female">
+                  <img src="female.png" alt="Female" />
+                  <p>Female</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="btns">
+            <button class="discard">Discard</button>
+            <button class="save-dept-btn" data-staff-Id="<%=staff._id%>">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
       <div class="delete-conformation">
         <div class="delete-body">
           <div class="top">
@@ -559,7 +695,7 @@
           </section>
           <i class="fa-solid fa-angle-right"></i>
         </a>
-        <a id="gender">
+        <a id="gender-label">
           <i class="fa-solid fa-people-group"></i>
           <section>
             <p>Gender</p>
@@ -644,7 +780,7 @@
       </div>
     </div>
     <script>
-      const msgContainer = document.querySelector(".msg-container");
+      let msgContainer = document.querySelector(".msg-container");
       let editName = document.getElementById("inputbox");
       let changePassword = document.getElementById("change-password");
       let wappNumber = document.getElementById("wapp-number");
@@ -653,11 +789,13 @@
       let desigationBox = document.querySelector(".input-box-desigation");
       let deptBox = document.querySelector(".input-box-dept");
       let locationLabel = document.querySelector("#location");
-      let position = document.querySelector("#position");
+      let position = document.getElementById("position");
+      let genderLabel = document.getElementById("gender-label");
       let inputbox = document.querySelector(".input-box-name");
       let passwordbox = document.querySelector(".input-box-password");
       let wappbox = document.querySelector(".input-box-wapp");
       let phonebox = document.querySelector(".input-box-phone");
+      let genderBox = document.querySelector(".input-box-gender");
       let discard = document.querySelectorAll(".discard");
       const nameSaveBtn = document.querySelector(".save-name-btn");
       const locationSaveBtn = document.querySelector(".save-location-btn");
@@ -690,10 +828,16 @@
       phoneNumber.addEventListener("click", () => {
         phonebox.classList.add("show");
       });
+      genderLabel.addEventListener("click", () => {
+        genderBox.classList.add("show");
+      });
       dept.addEventListener("click", () => {
         deptBox.classList.add("show");
-        deptBoxValue.setSelectionRange(deptBoxValue.value.length,deptBoxValue.value.length)
-        deptBoxValue.focus()
+        deptBoxValue.setSelectionRange(
+          deptBoxValue.value.length,
+          deptBoxValue.value.length
+        );
+        deptBoxValue.focus();
       });
       locationLabel.addEventListener("click", () => {
         locationBox.classList.add("show");
@@ -742,9 +886,9 @@
       phoneNoSaveBtn.addEventListener("click", () => {
         const phoneNumber = document.getElementById("phone").value;
         const data = {
-          number:{phoneNumber}
+          number: { phoneNumber },
         };
-        update(data, phoneNumber, phoneNoSaveBtn,pNoLabel);
+        update(data, phoneNumber, phoneNoSaveBtn, pNoLabel);
       });
       wappNoSaveBtn.addEventListener("click", () => {
         const wappNumber = document.getElementById("wapp").value;
@@ -818,6 +962,23 @@
           .catch((err) => {
             return alert(err.message);
           });
+      }
+      //-----------Gender------//
+      let swithcBtn = document.querySelector(".switch");
+      swithcBtn.addEventListener("click", move);
+      function move() {
+        swithcBtn.classList.toggle("move");
+        document
+          .querySelector(".male")
+          .firstElementChild.classList.toggle("move");
+        document
+          .querySelector(".female")
+          .firstElementChild.classList.toggle("round");
+        if (swithcBtn.classList.contains("move")) {
+          document.querySelector("#gender").setAttribute("value", "male");
+        } else {
+          document.querySelector("#gender").setAttribute("value", "female");
+        }
       }
     </script>
   </body>
