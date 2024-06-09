@@ -219,9 +219,9 @@ app.post("/logout", async (req, res) => {
     httpOnly: true,
   });
   res.status(200).json({
-    status:'success',
-    message:'Successfully Logout.!'
-  })
+    status: "success",
+    message: "Successfully Logout.!",
+  });
 });
 
 // app.get("/database/reset", async (req, res) => {
