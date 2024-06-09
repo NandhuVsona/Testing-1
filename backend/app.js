@@ -405,7 +405,8 @@ app.post("/optimized/:id", isLogin, async (req, res) => {
       saturday: schedule.satSchedule,
     };
     let updateStaff = await Tour.findByIdAndUpdate(req.params.id, data);
-    let updatedStaff = await Tour.findById(req.params.id);
+    let updatedStaff = await Tour.findById(req.params.id,{password:0});
+    console.log(updatedStaff)
     res.status(200).render("account.ejs", { staff: updatedStaff });
   } catch (err) {
     res.status(500).json(err.message);
