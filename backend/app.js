@@ -218,7 +218,7 @@ app.get("/myaccount", isLogin, async (req, res) => {
     res.status(500).json(err.message);
   }
 });
- 
+
 app.patch("/myaccount/:id", async (req, res) => {
   const id = req.params.id; // Get the id from params
   const newData = req.body.data; // Assuming your data is structured properly in req.body
@@ -429,8 +429,40 @@ app.delete("/account/:id", isLogin, async (req, res) => {
       );
     }
   } catch (error) {
-    console.error(error);
     res.status(500).send("Internal Server Error");
+  }
+});
+
+app.patch("/api/v1/password/:id", isLogin, async (req, res) => {
+  try {
+    const staff = await Tour.findById(req.params.id);
+
+    if (!staff) {
+      return res.status(404).json({
+        status: "failed",
+        message: "404 user not found.!",
+      });
+    }
+
+    const isCorrect = await bcrypt.compare(req.body.oldPass, staff.password);
+
+    if (!isCorrect) {
+      return res.status(400).json({
+        status: "Failed",
+        message: "Incorrect password.!",
+      });
+    }
+    const saltRound = await bcrypt.genSalt(12);
+    const hashedPassword = await bcrypt.hash(req.body.newPass, saltRound);
+    const updateNewPass = await Tour.findByIdAndUpdate(req.params.id, {
+      password: hashedPassword,
+    });
+    return res.status(201).json({
+      status:'Success',
+      message:'Password changed successfully.!'
+    })
+  } catch (err) {
+    res.status(500).send(err);
   }
 });
 module.exports = app;

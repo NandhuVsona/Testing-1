@@ -14,13 +14,13 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+    /> -->
 
     <style>
       * {
@@ -518,20 +518,22 @@
       <div class="input-box-password box-container">
         <div class="box-body">
           <div class="input">
-            <label for="password">Enter your old Password</label>
-            <input type="text" id="password" />
+            <label for="old-password">Enter your old Password</label>
+            <input type="text" id="old-password" />
           </div>
           <div class="input">
-            <label for="name">New Password</label>
-            <input type="text" id="name" />
+            <label for="new-password">New Password</label>
+            <input type="text" id="new-password" />
           </div>
           <div class="input">
-            <label for="name">Confirm Password</label>
-            <input type="text" id="name" />
+            <label for="confirm-password">Confirm Password</label>
+            <input type="text" id="confirm-password" />
           </div>
           <div class="btns">
             <button class="discard">Discard</button>
-            <button>Save</button>
+            <button class="update-password" data-staff-Id="<%=staff._id%>">
+              Save
+            </button>
           </div>
         </div>
       </div>
@@ -771,6 +773,11 @@
       </div>
     </div>
     <script>
+      function hideMsg() {
+        setTimeout(() => {
+          msgContainer.classList.add("hide");
+        }, 3000);
+      }
       let logoutLabel = document.getElementById("logout");
       let msgContainer = document.querySelector(".msg-container");
       let editName = document.getElementById("inputbox");
@@ -781,7 +788,7 @@
       let desigationBox = document.querySelector(".input-box-desigation");
       let deptBox = document.querySelector(".input-box-dept");
       let locationLabel = document.querySelector("#location");
-
+      let passwordSaveBtn = document.querySelector(".update-password");
       let position = document.getElementById("position");
       let genderLabel = document.getElementById("gender-label");
       let inputbox = document.querySelector(".input-box-name");
@@ -814,7 +821,7 @@
       });
       changePassword.addEventListener("click", () => {
         passwordbox.classList.add("show");
-        document.querySelector("#password").focus();
+        document.querySelector("#old-password").focus();
       });
       wappNumber.addEventListener("click", () => {
         wappbox.classList.add("show");
@@ -904,6 +911,45 @@
         update(data, gender, genderSaveBtn, field);
       });
 
+      async function updateToDatabase(oldPass, newPass) {
+        let data = { oldPass, newPass };
+        let id = passwordSaveBtn.dataset.staffId;
+        let req = await fetch(`/api/v1/password/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            document.querySelector(".msg-box").innerHTML = res.message;
+            msgContainer.classList.remove("hide");
+            hideMsg();
+          })
+          .catch((err) => {
+            document.querySelector(".msg-box").innerHTML = err.message;
+            msgContainer.classList.remove("hide");
+            hideMsg();
+          });
+      }
+
+      passwordSaveBtn.addEventListener("click", () => {
+        let oldPassword = document.querySelector("#old-password").value;
+        let newPassword = document.querySelector("#new-password").value;
+        let confirmPassword = document.querySelector("#confirm-password").value;
+
+        if (!(newPassword === confirmPassword)) {
+          passwordSaveBtn.parentElement.parentElement.parentElement.classList.remove(
+            "show"
+          );
+          document.querySelector(".msg-box").innerHTML =
+            "Password must be same.!";
+          msgContainer.classList.remove("hide");
+          hideMsg();
+          return;
+        }
+        updateToDatabase(oldPassword, newPassword);
+      });
+
       async function update(data, value, saveBtn, field = "") {
         let id = saveBtn.dataset.staffId;
         let req = await fetch(`/api/v1/update/${id}`, {
@@ -932,11 +978,6 @@
           });
       }
 
-      function hideMsg() {
-        setTimeout(() => {
-          msgContainer.classList.add("hide");
-        }, 3000);
-      }
       deleteLabel.addEventListener("click", () => {
         deleteMessage.classList.add("show");
         body.classList.add("reduceHeight");
