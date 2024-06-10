@@ -86,7 +86,7 @@
   <body>
     <div class="logo">
       <div class="logo-body">
-        <img src="./logo.png" alt="logo" />
+        <img loading="lazy" src="./logo.png" alt="logo" />
         <h2>STAFFS STATUS</h2>
       </div>
     </div>
@@ -212,9 +212,9 @@
             <div class="profile">
               <div class="dp">
                 <% if (staff.image) { %>
-                <img src="uploads/<%=staff.image%>" alt="<%=staff.name%> img" />
+                <img loading="lazy" src="uploads/<%=staff.image%>" alt="<%=staff.name%> img" />
                 <% } else { %>
-                <img src="uploads/dp.jpg" alt="<%=staff.name%> img" />
+                <img loading="lazy" src="dp.jpg" alt="<%=staff.name%> img" />
                 <% } %>
               </div>
               <div class="details">

@@ -492,7 +492,7 @@
     <header>
       <div class="head-body">
         <div class="profile">
-          <img src="/gear.png" alt="" />
+          <img loading="lazy" src="/gear.png" alt="" />
         </div>
         <h2>Settings</h2>
       </div>
@@ -633,12 +633,12 @@
             <div class="gender-box">
               <div class="gender">
                 <div class="male">
-                  <img class="img" src="male.png" alt="Male" />
+                  <img loading="lazy" class="img" src="male.png" alt="Male" />
                   <p>Male</p>
                 </div>
                 <div class="switch"></div>
                 <div class="female">
-                  <img src="female.png" alt="Female" />
+                  <img loading="lazy" src="female.png" alt="Female" />
                   <p>Female</p>
                 </div>
               </div>
@@ -655,7 +655,7 @@
       <div class="delete-conformation">
         <div class="delete-body">
           <div class="top">
-            <img src="./deleteIcon.png" alt="" />
+            <img loading="lazy" src="./deleteIcon.png" alt="" />
           </div>
           <div class="confirm-msg">
             <h2>Are You Sure?</h2>
@@ -905,7 +905,6 @@
       });
 
       async function update(data, value, saveBtn, field = "") {
-       
         let id = saveBtn.dataset.staffId;
         let req = await fetch(`/api/v1/update/${id}`, {
           method: "PATCH",
@@ -973,7 +972,9 @@
           .then((res) => res.json())
           .then((res) => {
             if (res.status === "success") {
+              window.location.href = "/";
               window.location.reload();
+              window.location.href = "/";
             }
           })
           .catch((err) => {

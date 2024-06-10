@@ -218,7 +218,7 @@ app.get("/myaccount", isLogin, async (req, res) => {
     res.status(500).json(err.message);
   }
 });
-
+ 
 app.patch("/myaccount/:id", async (req, res) => {
   const id = req.params.id; // Get the id from params
   const newData = req.body.data; // Assuming your data is structured properly in req.body

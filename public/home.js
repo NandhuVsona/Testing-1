@@ -94,7 +94,7 @@ async function loadStaffs(dept) {
             <a href="/overview/${staff._id}">
               <div class="profile">
                 <div class="dp">
-                  <img src="/uploads/${staff.image}" alt="${staff.name} img" />
+                  <img loading="lazy" src="/uploads/${staff.image}" alt="${staff.name} img" />
                 </div>
                 <div class="details">
                   <h4 class="faculty__name">${staff.name}</h4>
@@ -131,7 +131,7 @@ let template = `
 <a href="">
   <div class="profile">
     <div class="dp skeleton">
-      <img src="" alt="" class=""/>
+      <img  src="" alt="" class=""/>
     </div>
     <div class="details">
       <h4 class="faculty__name skeleton">Sona College</h4>
