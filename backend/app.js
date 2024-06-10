@@ -120,6 +120,7 @@ app.post("/home", uploads, async (req, res) => {
       gender: req.body.gender,
       image: req.file.filename,
     });
+    console.log(staff);
     await staff.save();
 
     res.status(200).render("signin.ejs", {
