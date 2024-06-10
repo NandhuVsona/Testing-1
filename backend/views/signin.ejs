@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no"/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      user-scalable="no"
+    />
     <title>Staffs Status</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,11 +21,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
   </head>
   <style>
     :root {
-      --primary-color: #8c28d4;
+      --primary-color: orange;
     }
     * {
       margin: 0;
@@ -47,7 +50,7 @@
       align-items: center;
       flex-direction: column;
       gap: 20px;
-      
+      padding: 0px 10px;
     }
     .name,
     .password {
@@ -56,51 +59,83 @@
       flex-direction: column;
     }
     label {
-      font-size: 16px;
+      font-size: 18px;
       margin-bottom: 10px;
-      margin-left: 10px;
+      margin-left: 5px;
       font-weight: 600;
     }
     input,
     button {
       width: 100%;
-      height: 50px;
+      height: 53px;
       border-radius: 5px;
       border: 1px solid;
       padding-left: 20px;
-      font-size: 18px;
+      font-size: 20px;
     }
     button {
       margin-top: 10px;
       font-family: inherit;
       background-color: var(--primary-color);
       padding-left: 0;
-      color: #ffffff;
+      color: #2b2b2b;
       border: none;
-     
+      font-weight: 500;
     }
-   
+    .icon-input {
+      display: flex;
+      border: 1px solid;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      padding-left: 15px;
+      overflow: hidden;
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      i {
+        font-size: 21px;
+      }
+      input {
+        width: 100%;
+        height: 53px;
+        border: none;
+        padding-left: 13px;
+        font-size: 18px;
+      }
+      input:focus {
+        outline: none;
+      
+      }
   </style>
   <body>
     <div class="loginpage">
       <h1>LOGIN</h1>
       <%if(locals.msg){%>
-        <p><%=msg%></p>
+      <p><%=msg%></p>
       <%}%>
       <form method="post" action="/" class="form" autocomplete="off">
         <div class="name">
           <label for="">Email</label>
-          <input name="email" type="text" placeholder="Enter Your Email" />
+          <div class="icon-input">
+            <i class="fa-solid fa-user"></i>
+            <input name="email" type="text" placeholder="Enter Your Email" />
+          </div>
         </div>
         <div class="password">
           <label for="">Password</label>
-          <input
-          name="password"
-            class="pass"
-            type="text"
-            required
-            placeholder="Enter Your Password"
-          />
+          <div class="icon-input">
+            <i class="fa-solid fa-lock"></i>
+            <input
+              name="password"
+              class="pass"
+              type="text"
+              required
+              placeholder="Enter Your Password"
+            />
+          </div>
         </div>
         <button class="submit">Verify</button>
         <p>Don't have an account <a href="/signup">create</a></p>
