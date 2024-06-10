@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0"
       user-scalable="no"
     />
-    <title></title>
+    <title>Settings</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -905,7 +905,7 @@
       });
 
       async function update(data, value, saveBtn, field = "") {
-        console.log(data);
+       
         let id = saveBtn.dataset.staffId;
         let req = await fetch(`/api/v1/update/${id}`, {
           method: "PATCH",

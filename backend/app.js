@@ -110,21 +110,6 @@ app.post("/home", uploads, async (req, res) => {
     let salt = await bcrypt.genSalt(saltRounds);
     let hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-    const daysOfWeek = ["mon", "tue", "wed", "thu", "fri", "sat"];
-    const schedule = {};
-
-    daysOfWeek.forEach((day) => {
-      schedule[`${day}Schedule`] = {
-        firstPeriod: req.body[`${day}_first_period`] || " ",
-        secondPeriod: req.body[`${day}_second_peroid`] || " ",
-        thirdPeriod: req.body[`${day}_third_period`] || " ",
-        fourthPeriod: req.body[`${day}_forth_peroid`] || " ",
-        fifthPeriod: req.body[`${day}_fifth_period`] || " ",
-        sixthPeriod: req.body[`${day}_sixth_period`] || " ",
-        seventhPeriod: req.body[`${day}_seventh_period`] || " ",
-      };
-    });
-
     const staff = new Tour({
       name: req.body.name,
       email: req.body.email,
@@ -133,12 +118,6 @@ app.post("/home", uploads, async (req, res) => {
       position: req.body.position,
       location: req.body.location,
       gender: req.body.gender,
-      monday: schedule.monSchedule,
-      tuesday: schedule.tueSchedule,
-      wednesday: schedule.wedSchedule,
-      thursday: schedule.thuSchedule,
-      friday: schedule.friSchedule,
-      saturday: schedule.satSchedule,
       image: req.file.filename,
     });
     await staff.save();

@@ -31,6 +31,7 @@ function Validate() {
     const name = document.getElementById("name");
     const email = document.getElementById("email");
     const password = document.getElementById("password");
+    
    
     // Validate name
     if (name.value.trim().length <= 0) {
@@ -61,9 +62,9 @@ function showError(element,message){
   errorSpan.innerHTML = ' '
   errorSpan.style.color = 'red'
   errorSpan.style.paddingLeft = '10px'
-  element.classList.toggle("shake");
+  element.parentElement.classList.toggle("shake");
   errorSpan.innerText = message;
-  element.parentNode.appendChild(errorSpan);
+  element.parentElement.parentElement.appendChild(errorSpan);
   setTimeout(function () {
     errorSpan.style.display = "none";
   }, 1500);
@@ -83,7 +84,7 @@ function updatePage() {
     form.classList.remove("active");
   });
   formPage[currentPage].classList.add("active");
-  progress_line.style.width = currentPage * 45 + "px";
+  progress_line.style.width = currentPage * 150 + "px";
 }
 
 //-----------Gender------//

@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no"/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      user-scalable="no"
+    />
     <title>SingUp</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,7 +14,6 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
@@ -27,6 +30,7 @@
       align-items: center;
       justify-content: space-evenly;
       flex-direction: column;
+      margin-top: 20px;
     }
     .gender-box img {
       width: 100px;
@@ -99,6 +103,34 @@
         border: 2px solid red;
       }
     }
+    i {
+      color: #13131399;
+    }
+    input[type="file"] {
+      visibility: hidden;
+      height: 50px;
+    }
+    input[type="file"] + label {
+      width: 100%;
+      margin-bottom: 15px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background-color: #b13bff;
+      color: #ffffff;
+      text-align: center;
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+    }
+    input[type="file"] + label i {
+      color: white;
+      margin-right: 5px;
+    }
   </style>
   <body>
     <div class="container">
@@ -114,12 +146,7 @@
           <div class="progress-steps active">1</div>
           <div class="progress-steps">2</div>
           <div class="progress-steps">3</div>
-          <div class="progress-steps">4</div>
-          <div class="progress-steps">5</div>
-          <div class="progress-steps">6</div>
-          <div class="progress-steps">7</div>
-          <div class="progress-steps">8</div>
-          <div class="progress-steps">9</div>
+          <!-- <div class="progress-steps">4</div> -->
         </div>
       </header>
 
@@ -127,32 +154,43 @@
         <div class="form-page active">
           <div class="form-group">
             <label for="name">Name</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Enter Your Name"
-            />
+            <div class="icon-input">
+              <i class="fa-solid fa-user"></i>
+              <input
+                type="text"
+                name="name"
+                id="name"
+              
+                placeholder="Enter Your Name"
+              />
+            </div>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter Your Email"
-            />
+            <div class="icon-input">
+              <i class="fa-solid fa-envelope"></i>
+              <input
+                type="email"
+                name="email"
+               
+                id="email"
+                placeholder="Enter Your Email"
+              />
+            </div>
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              maxlength="8"
-              placeholder="Enter Your Password"
-            />
+            <div class="icon-input">
+              <i class="fa-solid fa-lock"></i>
+              <input
+                type="password"
+                name="password"
+                id="password"
+               
+                maxlength="8"
+                placeholder="Enter Your Password"
+              />
+            </div>
           </div>
           <button class="nextbtn">Next</button>
           <p>Already have an account ? <a href="/">login</a></p>
@@ -161,534 +199,37 @@
         <div class="form-page">
           <div class="form-group">
             <label for="department">Department</label>
-            <input
-              type="text"
-              name="department"
-              id="department"
-              placeholder="Enter The Department"
-            />
+            <div class="icon-input">
+              <i class="fa-solid fa-layer-group"></i>
+              <input
+                type="text"
+                name="department"
+                id="department"
+                placeholder="Enter The Department"
+              />
+            </div>
           </div>
           <div class="form-group">
             <label for="position">Designation</label>
-            <input
-              type="text"
-              name="position"
-              id="position"
-              placeholder="like assistant or associative prof"
-            />
+            <div class="icon-input">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <input
+                type="text"
+                name="position"
+                id="position"
+                placeholder="Assistant or associative prof"
+              />
+            </div>
           </div>
           <div class="form-group">
-            <label for="location"
-              ><i class="fa-solid fa-location-dot"></i> Location</label
-            >
-            <input
-              type="text"
-              name="location"
-              id="location"
-              placeholder="like ECE dept 2nd floor 931..."
-            />
-          </div>
-          <div class="btns">
-            <button class="pretbtn">previous</button>
-            <button class="nextbtn">NEXT</button>
-          </div>
-        </div>
-
-        <div class="form-page time-table">
-          <header>
-            <h2>Monday</h2>
-          </header>
-          <div class="morning-sections">
-            <div class="form-group">
-              <label for="mon-first-period">First Period</label>
+            <label for="location"> Location</label>
+            <div class="icon-input">
+              <i class="fa-solid fa-location-dot"></i>
               <input
-                class="monday-shedule"
                 type="text"
-                name="mon_first_period"
-                id="mon-first-period"
-                placeholder="like II CSE B 302"
-              />
-            </div>
-            <div class="form-group">
-              <label for="mon-second-peroid">Second Peroid</label>
-              <input
-                class="monday-shedule"
-                type="text"
-                name="mon_second_peroid"
-                id="mon-second-peroid"
-              />
-            </div>
-          </div>
-
-          <div class="afterbreak-sections">
-            <div class="form-group">
-              <label for="mon-third-period">Third Period</label>
-              <input
-                class="monday-shedule"
-                type="text"
-                name="mon_third_period"
-                id="mon-third-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="mon-forth-peroid">Fourth Peroid</label>
-              <input
-                class="monday-shedule"
-                type="text"
-                name="mon_forth_peroid"
-                id="mon-forth-peroid"
-              />
-            </div>
-          </div>
-          <div class="afternoon-sectins">
-            <div class="form-group">
-              <label for="mon-fifth-period">Fifth Period</label>
-              <input
-                class="monday-shedule"
-                type="text"
-                name="mon_fifth_period"
-                id="mon-fifth-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="mon-sixth-period">Sixth Peroid</label>
-              <input
-                class="monday-shedule"
-                type="text"
-                name="mon_sixth_period"
-                id="mon-sixth-period"
-              />
-            </div>
-          </div>
-
-          <div class="last-period">
-            <div class="form-group">
-              <label for="mon-seventh-period">Seventh Peroid</label>
-              <input
-                class="monday-shedule"
-                type="text"
-                name="mon_seventh_period"
-                id="mon-seventh-period"
-              />
-            </div>
-          </div>
-
-          <div class="btns">
-            <button class="pretbtn">previous</button>
-            <button class="nextbtn">NEXT</button>
-          </div>
-        </div>
-        <div class="form-page time-table">
-          <header>
-            <h2>Tuesday</h2>
-          </header>
-          <div class="morning-sections">
-            <div class="form-group">
-              <label for="tue-first-period">First Period</label>
-              <input
-                class="tuesday-shedule"
-                type="text"
-                name="tue_first_period"
-                id="tue-first-period"
-                placeholder="like II CSE B 302"
-              />
-            </div>
-            <div class="form-group">
-              <label for="tue-second-peroid">Second Peroid</label>
-              <input
-                class="tuesday-shedule"
-                type="text"
-                name="tue_second_peroid"
-                id="tue-second-peroid"
-              />
-            </div>
-          </div>
-
-          <div class="afterbreak-sections">
-            <div class="form-group">
-              <label for="tue-third_period">Third Period</label>
-              <input
-                class="tuesday-shedule"
-                type="text"
-                name="tue_third-period"
-                id="tue-third-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="tue-forth-peroid">Fourth Peroid</label>
-              <input
-                class="tuesday-shedule"
-                type="text"
-                name="tue_forth_peroid"
-                id="tue-forth-peroid"
-              />
-            </div>
-          </div>
-          <div class="afternoon-sectins">
-            <div class="form-group">
-              <label for="tue-fifth-period">Fifth Period</label>
-              <input
-                class="tuesday-shedule"
-                type="text"
-                name="tue_fifth_period"
-                id="tue-fifth-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="tue-sixth-period">Sixth Peroid</label>
-              <input
-                class="tuesday-shedule"
-                type="text"
-                name="tue_sixth_period"
-                id="tue-sixth-period"
-              />
-            </div>
-          </div>
-
-          <div class="last-period">
-            <div class="form-group">
-              <label for="tue-seventh-period">Seventh Peroid</label>
-              <input
-                class="tuesday-shedule"
-                type="text"
-                name="tue_seventh_period"
-                id="tue-seventh-period"
-              />
-            </div>
-          </div>
-
-          <div class="btns">
-            <button class="pretbtn">previous</button>
-            <button class="nextbtn">NEXT</button>
-          </div>
-        </div>
-        <div class="form-page time-table">
-          <header>
-            <h2>Wednesday</h2>
-          </header>
-          <div class="morning-sections">
-            <div class="form-group">
-              <label for="wed-first-period">First Period</label>
-              <input
-                class="wednesday-shedule"
-                type="text"
-                name="wed_first_period"
-                id="wed-first-period"
-                placeholder="like II CSE B 302"
-              />
-            </div>
-            <div class="form-group">
-              <label for="wed-second-peroid">Second Peroid</label>
-              <input
-                class="wednesday-shedule"
-                type="text"
-                name="wed_second_peroid"
-                id="wed-second-peroid"
-              />
-            </div>
-          </div>
-
-          <div class="afterbreak-sections">
-            <div class="form-group">
-              <label for="wed-third-period">Third Period</label>
-              <input
-                class="wednesday-shedule"
-                type="text"
-                name="wed_third_period"
-                id="wed-third-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="wed-forth-peroid">Fourth Peroid</label>
-              <input
-                class="wednesday-shedule"
-                type="text"
-                name="wed_forth_peroid"
-                id="wed-forth-peroid"
-              />
-            </div>
-          </div>
-          <div class="afternoon-sectins">
-            <div class="form-group">
-              <label for="wed-fifth-period">Fifth Period</label>
-              <input
-                class="wednesday-shedule"
-                type="text"
-                name="wed_fifth_period"
-                id="wed-fifth-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="wed-sixth-period">Sixth Peroid</label>
-              <input
-                class="wednesday-shedule"
-                type="text"
-                name="wed_sixth_period"
-                id="wed-sixth-period"
-              />
-            </div>
-          </div>
-
-          <div class="last-period">
-            <div class="form-group">
-              <label for="wed-seventh-period">Seventh Peroid</label>
-              <input
-                class="wednesday-shedule"
-                type="text"
-                name="wed_seventh_period"
-                id="wed-seventh-period"
-              />
-            </div>
-          </div>
-
-          <div class="btns">
-            <button class="pretbtn">previous</button>
-            <button class="nextbtn">NEXT</button>
-          </div>
-        </div>
-        <div class="form-page time-table">
-          <header>
-            <h2>Thursday</h2>
-          </header>
-          <div class="morning-sections">
-            <div class="form-group">
-              <label for="thu-first-period">First Period</label>
-              <input
-                class="thursday-shedule"
-                type="text"
-                name="thu_first_period"
-                id="thu-first-period"
-                placeholder="like II CSE B 302"
-              />
-            </div>
-            <div class="form-group">
-              <label for="thu-second-peroid">Second Peroid</label>
-              <input
-                class="thursday-shedule"
-                type="text"
-                name="thu_second_peroid"
-                id="thu-second-peroid"
-              />
-            </div>
-          </div>
-
-          <div class="afterbreak-sections">
-            <div class="form-group">
-              <label for="thu-third-period">Third Period</label>
-              <input
-                class="thursday-shedule"
-                type="text"
-                name="thu_third_period"
-                id="thu-third-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="thu-forth-peroid">Fourth Peroid</label>
-              <input
-                class="thursday-shedule"
-                type="text"
-                name="thu_forth_peroid"
-                id="thu-forth-peroid"
-              />
-            </div>
-          </div>
-          <div class="afternoon-sectins">
-            <div class="form-group">
-              <label for="thu-fifth-period">Fifth Period</label>
-              <input
-                class="thursday-shedule"
-                type="text"
-                name="thu_fifth_period"
-                id="thu-fifth-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="thu-sixth-period">Sixth Peroid</label>
-              <input
-                class="thursday-shedule"
-                type="text"
-                name="thu_sixth_period"
-                id="thu-sixth-period"
-              />
-            </div>
-          </div>
-
-          <div class="last-period">
-            <div class="form-group">
-              <label for="thu-seventh-period">Seventh Peroid</label>
-              <input
-                class="thursday-shedule"
-                type="text"
-                name="thu_seventh_period"
-                id="thu-seventh-period"
-              />
-            </div>
-          </div>
-
-          <div class="btns">
-            <button class="pretbtn">previous</button>
-            <button class="nextbtn">NEXT</button>
-          </div>
-        </div>
-        <div class="form-page time-table">
-          <header>
-            <h2>Friday</h2>
-          </header>
-          <div class="morning-sections">
-            <div class="form-group">
-              <label for="fri-first-period">First Period</label>
-              <input
-                class="friday-shedule"
-                type="text"
-                name="fri_first_period"
-                id="fri-first-period"
-                placeholder="like II CSE B 302"
-              />
-            </div>
-            <div class="form-group">
-              <label for="fri-second-peroid">Second Peroid</label>
-              <input
-                class="friday-shedule"
-                type="text"
-                name="fri_second_peroid"
-                id="fri-second-peroid"
-              />
-            </div>
-          </div>
-
-          <div class="afterbreak-sections">
-            <div class="form-group">
-              <label for="fri-third-period">Third Period</label>
-              <input
-                class="friday-shedule"
-                type="text"
-                name="fri_third_period"
-                id="fri-third-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="fri-forth-peroid">Fourth Peroid</label>
-              <input
-                class="friday-shedule"
-                type="text"
-                name="fri_forth_peroid"
-                id="fri-forth-peroid"
-              />
-            </div>
-          </div>
-          <div class="afternoon-sectins">
-            <div class="form-group">
-              <label for="fri-fifth-period">Fifth Period</label>
-              <input
-                class="friday-shedule"
-                type="text"
-                name="fri_fifth_period"
-                id="fri-fifth-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="fri-sixth-period">Sixth Peroid</label>
-              <input
-                class="friday-shedule"
-                type="text"
-                name="fri_sixth_period"
-                id="fri-sixth-period"
-              />
-            </div>
-          </div>
-
-          <div class="last-period">
-            <div class="form-group">
-              <label for="fri-seventh-period">Seventh Peroid</label>
-              <input
-                class="friday-shedule"
-                type="text"
-                name="fri_seventh_period"
-                id="fri-seventh-period"
-              />
-            </div>
-          </div>
-
-          <div class="btns">
-            <button class="pretbtn">previous</button>
-            <button class="nextbtn">NEXT</button>
-          </div>
-        </div>
-        <div class="form-page time-table">
-          <header>
-            <h2>Saturday</h2>
-          </header>
-          <div class="morning-sections">
-            <div class="form-group">
-              <label for="sat-first-period">First Period</label>
-              <input
-                class="saturday-shedule"
-                type="text"
-                name="sat_first_period"
-                id="sat-first-period"
-                placeholder="like II CSE B 302"
-              />
-            </div>
-            <div class="form-group">
-              <label for="sat-second-peroid">Second Peroid</label>
-              <input
-                class="saturday-shedule"
-                type="text"
-                name="sat_second_peroid"
-                id="sat-second-peroid"
-              />
-            </div>
-          </div>
-
-          <div class="afterbreak-sections">
-            <div class="form-group">
-              <label for="sat-third-period">Third Period</label>
-              <input
-                class="saturday-shedule"
-                type="text"
-                name="sat_third_period"
-                id="sat-third-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="sat-forth-peroid">Fourth Peroid</label>
-              <input
-                class="saturday-shedule"
-                type="text"
-                name="sat_forth_peroid"
-                id="sat-forth-peroid"
-              />
-            </div>
-          </div>
-          <div class="afternoon-sectins">
-            <div class="form-group">
-              <label for="sat-fifth-period">Fifth Period</label>
-              <input
-                class="saturday-shedule"
-                type="text"
-                name="sat_fifth_period"
-                id="sat-fifth-period"
-              />
-            </div>
-            <div class="form-group">
-              <label for="sat-sixth-period">Sixth Peroid</label>
-              <input
-                class="saturday-shedule"
-                type="text"
-                name="sat_sixth_period"
-                id="sat-sixth-period"
-              />
-            </div>
-          </div>
-
-          <div class="last-period">
-            <div class="form-group">
-              <label for="sat-seventh-period">Seventh Peroid</label>
-              <input
-                class="saturday-shedule"
-                type="text"
-                name="sat_seventh_period"
-                id="sat-seventh-period"
+                name="location"
+                id="location"
+                placeholder="like ECE dept 2nd floor"
               />
             </div>
           </div>
@@ -710,12 +251,12 @@
             <div class="gender-box">
               <div class="gender">
                 <div class="male">
-                  <img class="img" src="male.png" alt="Male" />
+                  <img loading="lazy" class="img" src="male.png" alt="Male" />
                   <p>Male</p>
                 </div>
                 <div class="switch"></div>
                 <div class="female">
-                  <img src="female.png" alt="Female" />
+                  <img loading="lazy" src="female.png" alt="Female" />
                   <p>Female</p>
                 </div>
               </div>
@@ -724,13 +265,14 @@
           <div class="form-group">
             <input type="file" name="profile" id="profile" />
             <label for="profile"
-              >Upload
-              Image</label
+              ><i class="fa-solid fa-image"></i>Upload Image</label
             >
           </div>
           <div class="btns">
             <button class="pretbtn">previous</button>
-            <button style="color: black;" type="submit" class="submit">Submit</button>
+            <button style="color: black" type="submit" class="submit">
+              Submit
+            </button>
           </div>
         </div>
       </form>

@@ -1,13 +1,8 @@
-:root {
-  --primary-color: #8c28d4;
-}
 h2 {
   font-size: 20px;
 }
 
-*,
-::before,
-::after {
+* {
   margin: 0;
   padding: 0%;
   box-sizing: border-box;
@@ -26,7 +21,7 @@ h2 {
   gap: 15px;
 }
 .container header {
-  width: 360px;
+  width: 330px;
   text-align: center;
 }
 .container header h1 {
@@ -47,9 +42,14 @@ h2 {
 .container header .progress .progress-line {
   position: absolute;
   width: 0px;
-  height: 5px;
+  height: 6px;
   z-index: -1;
-  background-color:var(--primary-color);
+  background-color: orange;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
 }
 .container header .progress::before {
   content: "";
@@ -57,24 +57,29 @@ h2 {
   left: 0;
   position: absolute;
   width: 100%;
-  height: 5px;
+  height: 6px;
   background-color: rgb(195, 195, 195);
 }
 .container header .progress .progress-steps {
   background-color: rgb(195, 195, 195);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 18px;
   border-radius: 50%;
-  line-height: 33px;
-  width: 33px;
-  height: 33px;
+  line-height: 45px;
+  width: 45px;
+  transition: all 0.3s ease;
+  height: 45px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
 }
 .container header .progress .progress-steps.active {
- color: #fff;
-  background-color: var(--primary-color);
+  background-color: orange;
 }
 .container form {
   display: flex;
@@ -83,7 +88,7 @@ h2 {
   flex-direction: column;
   gap: 30px;
   width: 360px;
-  padding: 5px;
+  padding: 0px 10px;
 }
 .container form .form-page {
   width: 100%;
@@ -101,44 +106,54 @@ h2 {
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  gap: 15px;
+  gap: 10px;
 }
 .container form .form-page .form-group label {
   font-weight: 600;
   padding-left: 5px;
 }
-.container form .form-page .form-group input {
-  width: 100%;
-  height: 50px;
+.container form .form-page .form-group .icon-input {
+  display: flex;
   border: 1px solid;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   padding-left: 15px;
-  font-size: 18px;
+  overflow: hidden;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
-.container form .form-page .form-group input:focus {
-  outline: none;
-  border: 1px solid var(--primary-color);
+.container form .form-page .form-group .icon-input i {
+  font-size: 21px;
 }
-.container form .form-page .form-group input[type=file] {
+.container form .form-page .form-group .icon-input input {
+  width: 100%;
+  height: 53px;
+  border: none;
+  padding-left: 13px;
+  font-size: 18px;
+}
+.container form .form-page .form-group .icon-input input:focus {
+  outline: none;
+}
+.container form .form-page .form-group .icon-input input[type=file] {
   visibility: hidden;
 }
-.container form .form-page .form-group input[type=file] + label {
+.container form .form-page .form-group .icon-input input[type=file] + label {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
-  background-color: #03d155;
-  color: #fff;
+  background-color: #64b4e9;
   text-align: center;
   border-radius: 5px;
   -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;y
+  -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
@@ -149,9 +164,9 @@ h2 {
   font-weight: 500;
   font-size: 17px;
   cursor: pointer;
-  background-color: var(--primary-color);
+  background-color: orange;
   border: none;
-  color: #ffffff;
+  color: #000000;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -165,12 +180,10 @@ h2 {
   align-items: center;
   justify-content: space-around;
   gap: 30px;
- 
 }
 .container form .form-page .btns .submit {
   background-color: white;
-  
-  border: 2px solid var(--primary-color);
+  border: 2px solid orange;
 }
 .container form .form-page.active {
   display: flex;
@@ -183,7 +196,6 @@ h2 {
   -ms-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
 }
-
 @keyframes slide {
   0% {
     transform: scale(-1, 0);
