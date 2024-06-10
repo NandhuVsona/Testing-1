@@ -24,6 +24,10 @@
     * {
       user-select: none;
     }
+    .container{
+      justify-content: flex-start;
+      padding-top: 20px;
+    }
     .gender-box {
       width: 100%;
       display: flex;
@@ -85,7 +89,7 @@
       justify-content: space-around;
     }
     #update {
-      color: #8c28d4;
+      color: orange;
     }
     .container header .progress .progress-steps {
       background-color: rgb(195, 195, 195);
@@ -111,11 +115,21 @@
       height: 5px;
       background-color: rgb(195, 195, 195);
     }
+    .container form .form-page .form-group input {
+      width: 100%;
+      height: 50px;
+      border: 1px solid;
+      padding-left: 13px;
+      font-size: 18px;
+      border-radius: 5px;
+    }
+    
+    
   </style>
   <body>
     <div class="container">
       <header>
-        <h1>Update</h1>
+        <h1 >Update</h1>
         <div class="progress">
           <div class="progress-line"></div>
           <div class="progress-steps active">1</div>
