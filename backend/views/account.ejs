@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" user-scalable="no"/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      user-scalable="no"
+    />
     <title></title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -81,7 +85,7 @@
         }
       }
 
-      header {
+      .account-header {
         position: absolute;
         top: 0;
         color: #ffffff;
@@ -265,7 +269,7 @@
         width: 100%;
         background-color: rgb(0, 166, 255);
       }
-      .update a .status {
+      .update a .status-btn {
         width: 100%;
         background-color: rgb(123, 0, 255);
       }
@@ -617,10 +621,262 @@
       .previous-records table tr:nth-child(even) {
         background-color: #f1f1f1;
       }
+      .clock-card {
+        width: 100%;
+        padding: 15px 10px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        gap: 30px;
+        background: linear-gradient(
+          to bottom left,
+
+          rgb(0, 255, 221),
+          rgb(81, 0, 255)
+        );
+        animation: cardPopUp 1s ease;
+        overflow: hidden;
+      }
+      .card-cover {
+        background: linear-gradient(
+          to bottom left,
+
+          rgb(0, 255, 221),
+          rgb(81, 0, 255)
+        );
+      }
+      @keyframes cardPopUp {
+        0% {
+          opacity: 0;
+          transform: translateY(100px);
+        }
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(20deg);
+        }
+      }
+      .clock-body {
+        width: 200px;
+        height: 200px;
+        background-color: rgb(222, 222, 222);
+        padding: 12px;
+        border-radius: 50%;
+        margin-top: 35px;
+      }
+      .clock-card::before {
+        content: "";
+        bottom: 0;
+        position: absolute;
+        width: 95%;
+        height: 43%;
+        background-color: rgb(255, 255, 255);
+        border-radius: 20px 20px 0px 0px;
+        z-index: 1;
+        animation: downup 1s ease 0.2s;
+      }
+      @keyframes downup {
+        0% {
+          transform: translateY(500px);
+        }
+      }
+      @keyframes open {
+        0% {
+          opacity: 0;
+          transform: scale(0);
+        }
+      }
+      .outer-border {
+        background-color: rgb(96, 88, 88);
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        border-radius: 50%;
+        transition: all 1s ease;
+        box-shadow: -1px -1px 5px rgb(0, 0, 0);
+        animation: open 1s ease;
+      }
+
+      .middle-border {
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        pad: 10px;
+      }
+      .inner-border {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      .today {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      .time {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .clock-head {
+        position: absolute;
+        top: 0;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background-color: rgb(67, 66, 65);
+        color: #fff;
+        z-index: 10;
+        animation: downup 0.5s ease;
+      }
+      .gender img {
+        animation: none;
+        filter: none;
+      }
+      .attendance-box {
+        width: 100%;
+        animation: downup 1s ease 0.2s;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+      }
+      .attendance-box img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+      }
+      .gender {
+        text-align: center;
+        width: 100%;
+      }
+      .switch {
+        width: 80px;
+        height: 40px;
+        border-radius: 50px;
+        background-color: rgb(202, 0, 0);
+        position: relative;
+      }
+      .switch::before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+
+        left: 55%;
+        top: 5px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+      .switch.move {
+        background-color: rgb(0, 156, 60);
+      }
+      .switch.move::before {
+        left: 5px;
+      }
+
+      .gender {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-around;
+      }
+
+      .shake {
+        transition: all 0.3s ease;
+        animation: shake 0.3s ease;
+      }
+      .box-body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        z-index: 2;
+      }
+      @keyframes shake {
+        0% {
+          transform: translateX(0px);
+        }
+        50% {
+          transform: translateX(-5px);
+          border: 2px solid red;
+        }
+        100% {
+          transform: translateX(5px);
+          border: 2px solid red;
+        }
+      }
+      .btns {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 0px 10px;
+        z-index: 2;
+      }
+      .btns button {
+        width: 100%;
+        height: 50px;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 16px;
+        border: none;
+        background-color: #fff;
+      }
+      .discard {
+        background-color: rgb(0, 255, 221) !important;
+      }
+      .save-status-btn {
+        background-color: rgb(81, 0, 255) !important;
+        color: #ffffff !important;
+      }
+      .current-time {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .card-cover {
+        position: absolute;
+        top: 40px;
+        z-index: 2;
+        width: 100%;
+      }
+      body.clock {
+        height: 100vh;
+        overflow: hidden;
+      }
+      body.clock .outer-table,
+      body.clock .profile,
+      body.clock .update,
+      body.clock .previous-records,
+      body.clock .count-body {
+        display: none;
+      }
+      body.clock .container {
+        border-radius: 0px;
+        background-color: transparent;
+      }
+      .card-cover.hide {
+        display: none;
+      }
     </style>
   </head>
   <body>
-    <header>
+    <header class="account-header">
       <div class="head-body">
         <div class="settings">
           <i class="fa-solid fa-user-gear"></i>
@@ -629,6 +885,66 @@
       </div>
     </header>
     <div class="container">
+      <div class="card-cover hide">
+        <div class="clock-card">
+          <header class="clock-head"><h2>Today Status</h2></header>
+          <div class="clock-body">
+            <div class="outer-border">
+              <div class="middle-border">
+                <div class="inner-border">
+                  <div class="time">
+                    <h1 class="current-time">
+                      <div class="hour">00</div>
+                      <span>:</span>
+                      <div class="min">00</div>
+                      <span>:</span>
+                      <div class="sec">00</div>
+                    </h1>
+                    <div class="today">
+                      <div class="date"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
+              <input
+                type="text"
+                value="absent"
+                name="attendance"
+                id="gender"
+                hidden
+              />
+              <div class="attendance-box">
+                <div class="gender">
+                  <div class="male">
+                    <img
+                      loading="lazy"
+                      class="img"
+                      src="present.jpg"
+                      alt="Male"
+                    />
+                    <p>Present</p>
+                  </div>
+                  <div class="switch"></div>
+                  <div class="female">
+                    <img loading="lazy" src="absent.jpg" alt="Female" />
+                    <p>Absent</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="btns">
+              <button class="discard">Discard</button>
+              <button class="save-status-btn" data-staff-Id="<%=staff._id%>">
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="profile">
         <div class="staff__dp">
           <img src="<%=staff.image%>" alt="<%=staff.name%>'s Image" />
@@ -683,8 +999,8 @@
             <p>optimize</p>
           </button></a
         >
-        <a href=""
-          ><button class="status">
+        <a
+          ><button class="status-btn">
             <i class="fa-solid fa-pen-to-square"></i>
             <p>Status</p>
           </button></a
@@ -850,6 +1166,97 @@
         document.querySelector(".tabel-body").classList.toggle("close");
         document.querySelector(".fa-angle-up").classList.toggle("down");
       });
+
+      let statusBtn = document.querySelector(".status-btn");
+      statusBtn.addEventListener("click", () => {
+        document.querySelector("body").classList.add("clock");
+        document.querySelector(".card-cover").classList.remove("hide");
+      });
+
+      let discard = document.querySelector(".discard");
+      discard.addEventListener("click", () => {
+        document.querySelector("body").classList.remove("clock");
+        document.querySelector(".card-cover").classList.add("hide");
+      });
+    </script>
+    <script>
+      function randomColor() {
+        let characters = [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          "a",
+          "b",
+          "c",
+          "d",
+          "e",
+          "f",
+        ];
+        let hexValue = "#";
+        for (let i = 0; i < 6; i++) {
+          hexValue += characters[Math.floor(Math.random() * 16)];
+        }
+        return hexValue;
+      }
+      setInterval(() => {
+        let border = document.querySelector(".outer-border");
+        let randomHex = randomColor();
+        border.style.backgroundColor = randomHex;
+        border.style.boxShadow = `-1px -1px 5px ${randomHex}`;
+      }, 2000);
+
+      //-----------Gender------//
+      let swithcBtn = document.querySelector(".switch");
+      swithcBtn.addEventListener("click", move);
+      function move() {
+        swithcBtn.classList.toggle("move");
+        document
+          .querySelector(".male")
+          .firstElementChild.classList.toggle("move");
+        document
+          .querySelector(".female")
+          .firstElementChild.classList.toggle("round");
+        if (swithcBtn.classList.contains("move")) {
+          document.querySelector("#gender").setAttribute("value", "present");
+        } else {
+          document.querySelector("#gender").setAttribute("value", "absent");
+        }
+      }
+
+      let hoursLabel = document.querySelector(".hour");
+      let minLabel = document.querySelector(".min");
+      let secLabel = document.querySelector(".sec");
+
+      let dateLabel = document.querySelector(".date");
+      let time = new Date();
+      let weeksOfDays = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+
+      dateLabel.innerHTML = time.toDateString();
+
+      setInterval(() => {
+        let time = new Date();
+        hoursLabel.innerHTML =
+          time.getHours() < 10 ? `0${time.getHours()}` : time.getHours();
+        minLabel.innerHTML =
+          time.getMinutes() < 10 ? `0${time.getMinutes()}` : time.getMinutes();
+        secLabel.innerHTML =
+          time.getSeconds() < 10 ? `0${time.getSeconds()}` : time.getSeconds();
+      }, 1000);
     </script>
   </body>
 </html>
