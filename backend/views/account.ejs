@@ -568,7 +568,12 @@
         position: sticky;
         top: 0;
         height: 40px;
-        background: linear-gradient(to left, #ff81d7, #6dcffc);
+        background: linear-gradient(
+          to bottom left,
+
+          rgb(144, 255, 240),
+          rgb(157, 115, 247)
+        );
       }
       .previous-records {
         text-align: center;
@@ -873,6 +878,28 @@
       .card-cover.hide {
         display: none;
       }
+
+      .msg-container.hide {
+        display: none;
+      }
+      .msg-container {
+        position: absolute;
+        top: 15px;
+        background-color: rgb(255, 255, 255);
+        text-align: center;
+        padding: 10px;
+        width: 95%;
+        border-radius: 5px;
+        font-size: 17px;
+        animation: message 1s ease;
+      }
+      @keyframes message {
+        0% {
+          opacity: 0;
+
+          transform: translateY(-200px);
+        }
+      }
     </style>
   </head>
   <body>
@@ -1110,9 +1137,9 @@
 
           <% staff.date.forEach(date => { %>
           <tr>
-            <td><%= date.split(' ')[0] %> <%= date.split(' ')[1] %></td>
+            <td><%= date.split(' ').slice(0,4).join(' ')%></td>
             <!-- Display only the date portion -->
-            <% if (date.split(' ')[2] == 'present') { %>
+            <% if ( date.split(' ')[4] == 'present') { %>
             <!-- Check if the date exists -->
             <td>
               <img src="/present.jpg" alt="" />
@@ -1129,6 +1156,9 @@
       </div>
     </div>
 
+    <div class="msg-container hide">
+      <div class="message"></div>
+    </div>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         let mode = JSON.parse(localStorage.getItem("mode"));
@@ -1141,6 +1171,7 @@
         }
       });
 
+      let updateAttendanceBtn = document.querySelector(".save-status-btn");
       let fields = document.querySelectorAll(".fields ul li");
 
       let iconContents = document.querySelectorAll(".icons-content");
@@ -1180,6 +1211,14 @@
       });
     </script>
     <script>
+      function messageCard(data) {
+        document.querySelector(".message").innerHTML = data;
+        document.querySelector(".msg-container").classList.remove("hide");
+        setInterval(() => {
+          document.querySelector(".msg-container").classList.add("hide");
+        }, 4000);
+      }
+
       function randomColor() {
         let characters = [
           0,
@@ -1257,6 +1296,29 @@
         secLabel.innerHTML =
           time.getSeconds() < 10 ? `0${time.getSeconds()}` : time.getSeconds();
       }, 1000);
+
+      updateAttendanceBtn.addEventListener("click", updateAttendance);
+      async function updateAttendance() {
+        let data = { status: document.querySelector("#gender").value };
+        console.log(data);
+        let id = updateAttendanceBtn.dataset.staffId;
+        let req = await fetch(`/api/v1/myaccount/attendance/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            messageCard(res.message);
+            document.querySelector("body").classList.remove("clock");
+            document.querySelector(".card-cover").classList.add("hide");
+          })
+          .catch((err) => {
+            messageCard(res.message);
+            document.querySelector("body").classList.remove("clock");
+            document.querySelector(".card-cover").classList.add("hide");
+          });
+      }
     </script>
   </body>
 </html>

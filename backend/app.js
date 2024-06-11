@@ -219,9 +219,9 @@ app.get("/myaccount", isLogin, async (req, res) => {
   }
 });
 
-app.patch("/myaccount/:id", async (req, res) => {
+app.patch("/api/v1/myaccount/attendance/:id", async (req, res) => {
   const id = req.params.id; // Get the id from params
-  const newData = req.body.data; // Assuming your data is structured properly in req.body
+  const newData = req.body.status; // Assuming your data is structured properly in req.body
   let incrementField;
   if (newData === "present") {
     incrementField = "count.totalPresent";
@@ -237,21 +237,36 @@ app.patch("/myaccount/:id", async (req, res) => {
     "Friday",
     "Saturday",
   ];
-  let date = new Date().toLocaleDateString();
+  let date = new Date().toDateString();
+
   let today = days[new Date().getDay()];
   try {
-    let isExist = await Tour.findOne({ _id: id }, { date: 1, _id: 0 });
+    let isExist = await Tour.findOne(
+      { _id: id },
+      { date: 1, status: 1, _id: 0 }
+    );
     if (isExist.date.length != 0) {
-      let isExistDate = isExist.date[isExist.date.length - 1].split(" ");
-      if (isExistDate[1] == date) {
+      let isExistDate = isExist.date[isExist.date.length - 1]
+        .split(" ")
+        .slice(0, 4)
+        .join(" ");
+
+      if (isExistDate == date) {
         let staff = await Tour.findOne({ _id: id });
-        return res.status(201).render("account.ejs", { staff: staff });
+        return res.status(201).json({
+          status: "Success",
+          message:
+            "Can't change " +
+            date +
+            " attendance alreday updated as " +
+            isExist.status,
+        });
       } else {
         let staff = await Tour.findOneAndUpdate(
           { _id: id },
           {
             status: newData,
-            $push: { date: today + " " + date + " " + newData },
+            $push: { date: date + " " + newData },
             $inc: {
               [incrementField]: 1,
             },
@@ -259,14 +274,17 @@ app.patch("/myaccount/:id", async (req, res) => {
           { new: true }
         );
 
-        res.status(200).render("account.ejs", { staff: staff });
+        res.status(201).json({
+          status: "Success",
+          message: `Successfully ${date} attendance is updated as ${newData}`,
+        });
       }
     } else {
       let staff = await Tour.findOneAndUpdate(
         { _id: id },
         {
           status: newData,
-          $push: { date: today + " " + date + " " + newData },
+          $push: { date: date + " " + newData },
           $inc: {
             [incrementField]: 1,
           },
@@ -274,7 +292,10 @@ app.patch("/myaccount/:id", async (req, res) => {
         { new: true }
       );
 
-      res.status(200).render("account.ejs", { staff: staff });
+      res.status(201).json({
+        status: "Success",
+        message: `Successfully ${date} attendance is updated as ${newData}`,
+      });
     }
   } catch (error) {
     console.error(error);
@@ -458,9 +479,9 @@ app.patch("/api/v1/password/:id", isLogin, async (req, res) => {
       password: hashedPassword,
     });
     return res.status(201).json({
-      status:'Success',
-      message:'Password changed successfully.!'
-    })
+      status: "Success",
+      message: "Password changed successfully.!",
+    });
   } catch (err) {
     res.status(500).send(err);
   }
