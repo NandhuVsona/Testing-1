@@ -293,8 +293,8 @@ input,
   flex-direction: column;
 }
 .show_list {
-  display: flex;
-  width: 100vw;
+  display: grid;
+ 
 
   
 }

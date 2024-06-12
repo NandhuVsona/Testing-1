@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     closebtn.classList.toggle("hide");
   }
 
-  let homepages = document.querySelectorAll(".homepage");
+  let homepages = document.querySelectorAll(".homepage index");
   homepages.forEach((page) => {
     page.addEventListener("click", () => {
       let searchBar = document
