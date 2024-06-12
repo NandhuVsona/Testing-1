@@ -97,6 +97,12 @@
       overflow: hidden;
       padding-bottom: 10px;
     }
+    body .search-page.active + .logo + .container header+.homepage {
+      display: none;
+    }
+    body .search-page.active + .logo + .container header+.homepage.index {
+      display: flex;
+    }
     body .search-page.active + .logo + .container header .search__bar {
       display: flex;
       animation: searchBarDown 0.3s ease;
