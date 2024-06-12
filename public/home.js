@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     container.classList.remove("dark");
   }
 
-  let searchBar = document.querySelector(".search");
+  let searchBar = document.querySelector(".search-input-box");
 
   let hampage = document.querySelector(".hampage");
 
-  // searchBar.addEventListener("input", (e) => filterData(e.target.value));
+  searchBar.addEventListener("input", (e) => filterData(e.target.value));
 
   function filterData(searchTerm) {
     let profile = document.querySelectorAll(".profile");
