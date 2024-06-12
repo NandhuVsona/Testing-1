@@ -33,10 +33,25 @@ document.addEventListener("DOMContentLoaded", () => {
   menu.addEventListener("click", menuClose);
   closebtn.addEventListener("click", menuClose);
   function optionController() {
+    let searchBar = document.querySelector(".search-page");
+
+    if (searchBar.classList.contains("active")) {
+      searchBar.classList.remove("active");
+    }
     options.classList.toggle("hide");
     menu.classList.toggle("hide");
     closebtn.classList.toggle("hide");
   }
+
+  let homepages = document.querySelectorAll(".homepage");
+  homepages.forEach((page) => {
+    page.addEventListener("click", () => {
+      let searchBar = document
+        .querySelector(".search-page")
+        .classList.toggle("active");
+      document.querySelector(".search-input-box").value = " ";
+    });
+  });
   function menuClose() {
     optionController();
   }
@@ -55,9 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
   //Search functionality
   let searchIcon = document.querySelector(".search-icon");
   searchIcon.addEventListener("click", () => {
-    options.classList.toggle("hide");
-    menu.classList.toggle("hide");
-    closebtn.classList.toggle("hide");
+    if (!options.classList.contains("hide")) {
+      options.classList.add("hide");
+      menu.classList.remove("hide");
+      closebtn.classList.add("hide");
+    }
+
     let searchInputBox = document.querySelector(".search-input-box");
 
     let searchBar = document
@@ -67,8 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
     searchInputBox.focus();
   });
 });
-
-
 
 let theme = document.querySelector(".theme");
 theme.addEventListener("click", changeTheme);
