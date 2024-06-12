@@ -95,6 +95,9 @@
         <div class="title">
           <h3><i class="fa-solid fa-hands-holding-child"></i> Staffs Status</h3>
           <div class="icons">
+            <div class="search-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
             <div class="theme">
               <i class="fa-solid fa-moon" style="color: #ffffff"></i>
 
@@ -212,7 +215,11 @@
             <div class="profile">
               <div class="dp">
                 <% if (staff.image) { %>
-                <img loading="lazy" src="uploads/<%=staff.image%>" alt="<%=staff.name%> img" />
+                <img
+                  loading="lazy"
+                  src="uploads/<%=staff.image%>"
+                  alt="<%=staff.name%> img"
+                />
                 <% } else { %>
                 <img loading="lazy" src="dp.jpg" alt="<%=staff.name%> img" />
                 <% } %>
