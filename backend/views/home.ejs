@@ -81,9 +81,40 @@
       user-select: none;
       -webkit-user-drag: none;
     }
+
+    body .search-page.active + .logo + .container {
+      margin-top: 25px;
+    }
+    body .search-page.active + .logo + .container .tabs {
+      width: 0%;
+      height: 0%;
+      display: none;
+    }
+    .search__bar {
+      display: none;
+    }
+    body .search-page.active + .logo + .container header {
+      overflow: hidden;
+      padding-bottom: 10px;
+    }
+    body .search-page.active + .logo + .container header .search__bar {
+      display: flex;
+      animation: searchBarDown 0.3s ease;
+    }
+    @keyframes searchBarDown {
+      0% {
+  
+        transform: translateY(50px);
+        
+      }
+     
+    }
   </style>
 
   <body>
+    <div class="search-page">
+      <div class="search-container"></div>
+    </div>
     <div class="logo">
       <div class="logo-body">
         <img loading="lazy" src="./logo.png" alt="logo" />
@@ -97,6 +128,7 @@
           <div class="icons">
             <div class="search-icon">
               <i class="fa-solid fa-magnifying-glass"></i>
+              <!-- <i  class="fa-solid fa-xmark remove search-cancel"></i> -->
             </div>
             <div class="theme">
               <i class="fa-solid fa-moon" style="color: #ffffff"></i>
@@ -149,9 +181,13 @@
             >
           </ul>
         </div>
-        <!-- <div class="search__bar">
-          <input type="text" placeholder="Search Staffs" class="search" />
-        </div> -->
+        <div class="search__bar">
+          <input autofocus
+            type="text"
+            placeholder="Search Staffs"
+            class="search-input-box"
+          />
+        </div>
 
         <div class="tabs">
           <div class="tab_bar">
@@ -319,7 +355,21 @@
           console.log(err);
         }
       }
+
+      //Search functionality
+      let searchIcon = document.querySelector(".search-icon");
+      searchIcon.addEventListener("click", () => {
+        let searchInputBox = document.querySelector(".search-input-box");
+        let searchBar = document
+          .querySelector(".search-page")
+          .classList.toggle("active");
+       setInterval(()=>{
+        searchInputBox.focus()
+       },400)
+        
+      });
     </script>
+
     <script type="module" src="home.js"></script>
   </body>
 </html>
