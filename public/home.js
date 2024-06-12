@@ -55,8 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //Search functionality
   let searchIcon = document.querySelector(".search-icon");
   searchIcon.addEventListener("click", () => {
-    options.classList.add("hide");
-    closebtn.classList.add("hide");
+    
     let searchInputBox = document.querySelector(".search-input-box");
 
     let searchBar = document
