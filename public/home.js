@@ -51,7 +51,24 @@ document.addEventListener("DOMContentLoaded", () => {
   isClick.forEach((option) => {
     option.addEventListener("click", menuClose);
   });
+
+  //Search functionality
+  let searchIcon = document.querySelector(".search-icon");
+  searchIcon.addEventListener("click", () => {
+    options.classList.toggle("hide");
+    menu.classList.toggle("hide");
+    closebtn.classList.toggle("hide");
+    let searchInputBox = document.querySelector(".search-input-box");
+
+    let searchBar = document
+      .querySelector(".search-page")
+      .classList.toggle("active");
+
+    searchInputBox.focus();
+  });
 });
+
+
 
 let theme = document.querySelector(".theme");
 theme.addEventListener("click", changeTheme);
@@ -230,4 +247,3 @@ pages.forEach((page) => {
   });
 });
 //--------------------------------------------------------
-
