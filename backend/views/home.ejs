@@ -104,8 +104,11 @@
     @keyframes searchBarDown {
       0% {
   
-        transform: translateY(50px);
+       width: 0;
         
+      }
+      100%{
+        width: 100%;
       }
      
     }
@@ -365,7 +368,7 @@
           .classList.toggle("active");
        setInterval(()=>{
         searchInputBox.focus()
-       },400)
+       },500)
         
       });
     </script>
